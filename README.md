@@ -1,9 +1,7 @@
 # Extensions
 
-[![CI Status](http://img.shields.io/travis/Georges Boumis/Extensions.svg?style=flat)](https://travis-ci.org/Georges Boumis/Extensions)
-[![Version](https://img.shields.io/cocoapods/v/Extensions.svg?style=flat)](http://cocoapods.org/pods/Extensions)
-[![License](https://img.shields.io/cocoapods/l/Extensions.svg?style=flat)](http://cocoapods.org/pods/Extensions)
-[![Platform](https://img.shields.io/cocoapods/p/Extensions.svg?style=flat)](http://cocoapods.org/pods/Extensions)
+Extensions is a collection of different little extensions to existent structs,
+classes and protocols of the standard library, as well as new classes.
 
 ## Example
 
