@@ -3,6 +3,8 @@ This application makes use of the following third party libraries:
 
 ## Extensions
 
+Extensions
+
 Copyright (c) 2016-2017 Georges Boumis <developer.george.boumis@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

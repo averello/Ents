@@ -1,6 +1,6 @@
 {
   "name": "Extensions",
-  "version": "1.14.22",
+  "version": "1.17",
   "summary": "Handy Extensions for Swift.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/averello/Extensions",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/averello/Extensions.git",
-    "tag": "1.14.22"
+    "tag": "1.17"
   },
   "platforms": {
     "ios": "8.0"
