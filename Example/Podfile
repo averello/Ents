@@ -1,8 +1,8 @@
 use_frameworks!
-target 'Extensions_Tests' do
+target 'Ents_Tests' do
   platform :ios, '8.0'
 
-  pod 'Extensions', :path => '../'
+  pod 'Ents', :path => '../'
   
   
 end

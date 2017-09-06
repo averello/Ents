@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-import Extensions
+import Ents
 
 class Tests: XCTestCase {
     

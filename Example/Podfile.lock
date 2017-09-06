@@ -1,16 +1,16 @@
 PODS:
-  - Extensions (1.17)
+  - Ents (1.17)
 
 DEPENDENCIES:
-  - Extensions (from `../`)
+  - Ents (from `../`)
 
 EXTERNAL SOURCES:
-  Extensions:
+  Ents:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Extensions: 7ba9c56c1529e8ea9056fd6038501af133632b8a
+  Ents: f7469b80b3507e2bbc936c96b2cf61e79c0ce809
 
-PODFILE CHECKSUM: f1187e303c415a14b0417f6c38171887a674013d
+PODFILE CHECKSUM: 5349b8994d8543441825d45502f4b015222680ac
 
 COCOAPODS: 1.2.1

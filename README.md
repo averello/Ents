@@ -1,6 +1,6 @@
-# Extensions
+# Ents
 
-Extensions is a collection of different little extensions to existent structs,
+Ents is a collection of different little extensions to existent structs,
 classes and protocols of the standard library, as well as new classes.
 
 ## Example
@@ -11,11 +11,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-Extensions is available through [CocoaPods](http://cocoapods.org). To install
+Ents is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "Extensions"
+pod "Ents"
 ```
 
 ## Author
@@ -24,4 +24,4 @@ Georges Boumis, developer.george.boumis@gmail.com
 
 ## License
 
-Extensions is available under the MIT license. See the LICENSE file for more info.
+Ents is available under the MIT license. See the LICENSE file for more info.
