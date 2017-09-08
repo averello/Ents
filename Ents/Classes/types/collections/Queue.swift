@@ -11,8 +11,6 @@ import Foundation
 
 /// A type that can 'enqueue' and 'dequeue' elements.
 public protocol Queue: Collection {
-    /// The type of elements held in 'self'
-    associatedtype Element
     
     /// Enqueue 'element' to 'self'
     mutating func enqueue(_ element: Element)

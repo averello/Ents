@@ -9,7 +9,7 @@
 
 import Foundation
 
-public extension RangeReplaceableCollection where Self.SubSequence.Iterator.Element == Self.Iterator.Element {
+public extension RangeReplaceableCollection {
     
     /// creates a new collection that was deprived of its last element
     public func dropingLast(_ n: Int = 1) -> Self  {

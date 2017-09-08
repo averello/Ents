@@ -9,7 +9,7 @@
 
 import Foundation
 
-public extension RandomAccessCollection where IndexDistance: BinaryInteger {
+public extension RandomAccessCollection {
     
     
     /// the middle element of an odd sized collection.
