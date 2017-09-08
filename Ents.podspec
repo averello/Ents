@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Ents'
-  s.version          = '1.17'
+  s.version          = '2.0'
   s.summary          = 'A collection of handy extensions for Swift.'
 
 # This description is used to generate tags and improve search results.
