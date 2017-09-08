@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "Extensions_Example.app"
-               BlueprintName = "Extensions_Example"
-               ReferencedContainer = "container:Extensions.xcodeproj">
+               BuildableName = "Ents_Example.app"
+               BlueprintName = "Ents_Example"
+               ReferencedContainer = "container:Ents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Extensions_Tests.xctest"
-               BlueprintName = "Extensions_Tests"
-               ReferencedContainer = "container:Extensions.xcodeproj">
+               BuildableName = "Ents_Tests.xctest"
+               BlueprintName = "Ents_Tests"
+               ReferencedContainer = "container:Ents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,6 +40,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -47,9 +48,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Extensions_Tests.xctest"
-               BlueprintName = "Extensions_Tests"
-               ReferencedContainer = "container:Extensions.xcodeproj">
+               BuildableName = "Ents_Tests.xctest"
+               BlueprintName = "Ents_Tests"
+               ReferencedContainer = "container:Ents.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Extensions_Example.app"
-            BlueprintName = "Extensions_Example"
-            ReferencedContainer = "container:Extensions.xcodeproj">
+            BuildableName = "Ents_Example.app"
+            BlueprintName = "Ents_Example"
+            ReferencedContainer = "container:Ents.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -69,6 +70,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -80,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Extensions_Example.app"
-            BlueprintName = "Extensions_Example"
-            ReferencedContainer = "container:Extensions.xcodeproj">
+            BuildableName = "Ents_Example.app"
+            BlueprintName = "Ents_Example"
+            ReferencedContainer = "container:Ents.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +101,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "Extensions_Example.app"
-            BlueprintName = "Extensions_Example"
-            ReferencedContainer = "container:Extensions.xcodeproj">
+            BuildableName = "Ents_Example.app"
+            BlueprintName = "Ents_Example"
+            ReferencedContainer = "container:Ents.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
