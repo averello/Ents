@@ -61,7 +61,7 @@ extension Value {
 
 //MARK: Act as a Hashable
 
-extension Value where T: Hashable {
+extension Value where Self: Hashable, T: Hashable {
 
     public var hashValue: Int {
         return self.value.hashValue
@@ -70,7 +70,7 @@ extension Value where T: Hashable {
 
 //MARK: Act as a IntegerArithmetic
 
-extension Value where T: BinaryInteger {
+extension Value where Self:BinaryInteger, T: BinaryInteger {
 
     public static func ==(lhs: Self, rhs: T) -> Bool {
         return (lhs.value == rhs)
@@ -161,36 +161,36 @@ extension Value where T: BinaryInteger {
     }
 }
 
-extension Value where T: FixedWidthInteger {
-    //
-    
-    public static func addWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
-        let res = lhs.value.addingReportingOverflow(rhs)
-        return (Self(value: res.0), overflow: res.overflow)
-    }
-    
-    public static func subtractWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
-        let res = lhs.value.subtractingReportingOverflow(rhs)
-        return (Self(value: res.0), overflow: res.overflow)
-    }
-    
-    public static func multiplyWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
-        let res = lhs.value.multipliedReportingOverflow(by: rhs)
-        return (Self(value: res.0), overflow: res.overflow)
-    }
-    
-    public static func divideWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
-        let res = lhs.value.dividedReportingOverflow(by: rhs)
-        return (Self(value: res.0), overflow: res.overflow)
-    }
-    
-    public static func remainderWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
-        let res = lhs.value.remainderReportingOverflow(dividingBy: rhs)
-        return (Self(value: res.0), overflow: res.overflow)
-    }
-    
-    //
-}
+//extension Value where T: FixedWidthInteger {
+//    //
+//
+//    public static func addWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
+//        let res = lhs.value.addingReportingOverflow(rhs)
+//        return (Self(value: res.0), overflow: res.overflow)
+//    }
+//
+//    public static func subtractWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
+//        let res = lhs.value.subtractingReportingOverflow(rhs)
+//        return (Self(value: res.0), overflow: res.overflow)
+//    }
+//
+//    public static func multiplyWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
+//        let res = lhs.value.multipliedReportingOverflow(by: rhs)
+//        return (Self(value: res.0), overflow: res.overflow)
+//    }
+//
+//    public static func divideWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
+//        let res = lhs.value.dividedReportingOverflow(by: rhs)
+//        return (Self(value: res.0), overflow: res.overflow)
+//    }
+//
+//    public static func remainderWithOverflow(_ lhs: Self, _ rhs: T) -> (Self, overflow: Bool) {
+//        let res = lhs.value.remainderReportingOverflow(dividingBy: rhs)
+//        return (Self(value: res.0), overflow: res.overflow)
+//    }
+//
+//    //
+//}
 
 //MARK: Act as a SignedInteger
 
@@ -306,7 +306,10 @@ public func %<V>(lhs: V, rhs: V) -> V where V: Value, V.T: BinaryInteger {
 
 //MARK: Act as a Collection
 
-extension Value where T: Collection {
+extension Value where Self: Collection,T: Collection,
+Self.Iterator == T.Iterator,
+Self.Index == T.Index,
+Self.IndexDistance == T.IndexDistance {
     
     public typealias Element = T.Iterator.Element
     public typealias Index = T.Index
