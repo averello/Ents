@@ -35,7 +35,7 @@ public extension IDValue {
     }
 }
 
-public extension IDValue where ID: Comparable {
+public extension IDValue where Self: Comparable, ID: Comparable {
 
     public static func <(lhs: Self, rhs: Self) -> Bool {
         return (lhs.rawValue < rhs.rawValue)
@@ -54,18 +54,24 @@ public extension IDValue where ID: Comparable {
     }
 }
 
-public extension IDValue where ID: Hashable {
+public extension IDValue where Self: Hashable, ID: Hashable {
     
     public var hashValue: Int {
         return self.rawValue.hashValue
     }
 }
 
-public extension IDValue where ID: ExpressibleByStringLiteral {
+public extension IDValue where
+    Self: ExpressibleByStringLiteral,
+    ID: ExpressibleByStringLiteral,
+    Self.StringLiteralType == ID.StringLiteralType,
+    Self.ExtendedGraphemeClusterLiteralType == ID.ExtendedGraphemeClusterLiteralType,
+    Self.UnicodeScalarLiteralType == ID.UnicodeScalarLiteralType
+{
     
-    typealias StringLiteralType = ID.StringLiteralType
-    typealias ExtendedGraphemeClusterLiteralType = ID.ExtendedGraphemeClusterLiteralType
-    typealias UnicodeScalarLiteralType = ID.UnicodeScalarLiteralType
+//    typealias StringLiteralType = ID.StringLiteralType
+//    typealias ExtendedGraphemeClusterLiteralType = ID.ExtendedGraphemeClusterLiteralType
+//    typealias UnicodeScalarLiteralType = ID.UnicodeScalarLiteralType
     
     public init(stringLiteral value: StringLiteralType) {
         self.init(ID(stringLiteral: value))
@@ -80,9 +86,13 @@ public extension IDValue where ID: ExpressibleByStringLiteral {
     }
 }
 
-public extension IDValue where ID: ExpressibleByIntegerLiteral {
+public extension IDValue where
+    Self: ExpressibleByIntegerLiteral,
+    ID: ExpressibleByIntegerLiteral,
+    Self.IntegerLiteralType == ID.IntegerLiteralType
+{
     
-    typealias IntegerLiteralType = ID.IntegerLiteralType
+//    typealias IntegerLiteralType = ID.IntegerLiteralType
     
     public init(integerLiteral value: IntegerLiteralType) {
         self.init(ID(integerLiteral: value))
