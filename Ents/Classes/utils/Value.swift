@@ -159,6 +159,26 @@ extension Value where Self:BinaryInteger, T: BinaryInteger {
     public static func %=(lhs: inout Self, rhs: T) {
         lhs = Self(value: lhs.value % rhs)
     }
+    
+    // minimum/maximum
+    
+    
+    public func minimum(_ other: Self) -> Self {
+        return Self(value: self.value.minimum(other.value))
+    }
+    
+    public func maximum(_ other: Self) -> Self {
+        return Self(value: self.value.maximum(other.value))
+    }
+    
+    
+    public func minimum(_ other: T) -> Self {
+        return Self(value: self.value.minimum(other))
+    }
+    
+    public func maximum(_ other: T) -> Self {
+        return Self(value: self.value.maximum(other))
+    }
 }
 
 //extension Value where T: FixedWidthInteger {
@@ -211,7 +231,7 @@ extension Value where T: SignedInteger {
 
 //MARK: Act as a FloatingPoint
 
-extension Value where T: FloatingPoint {
+extension Value where Self:FloatingPoint, T: FloatingPoint {
 
     public func adding(_ other: Self) -> Self {
         return self.adding(other.value)
