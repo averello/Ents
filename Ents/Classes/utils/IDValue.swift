@@ -29,49 +29,27 @@ public extension IDValue {
     public static func ==(lhs: Self, rhs: Self) -> Bool {
         return (lhs.rawValue == rhs.rawValue)
     }
-    
-    public static func !=(lhs: Self, rhs: Self) -> Bool {
-        return !(lhs == rhs)
-    }
 }
 
-public extension IDValue where Self: Comparable, ID: Comparable {
+public extension IDValue where ID: Comparable {
 
     public static func <(lhs: Self, rhs: Self) -> Bool {
         return (lhs.rawValue < rhs.rawValue)
     }
-
-    public static func >(lhs: Self, rhs: Self) -> Bool {
-        return (lhs.rawValue > rhs.rawValue)
-    }
-
-    public static func <=(lhs: Self, rhs: Self) -> Bool {
-        return (lhs.rawValue <= rhs.rawValue)
-    }
-
-    public static func >=(lhs: Self, rhs: Self) -> Bool {
-        return (lhs.rawValue >= rhs.rawValue)
-    }
 }
 
-public extension IDValue where Self: Hashable, ID: Hashable {
+public extension IDValue where ID: Hashable {
     
     public var hashValue: Int {
         return self.rawValue.hashValue
     }
 }
 
-public extension IDValue where
-    Self: ExpressibleByStringLiteral,
-    ID: ExpressibleByStringLiteral,
-    Self.StringLiteralType == ID.StringLiteralType,
-    Self.ExtendedGraphemeClusterLiteralType == ID.ExtendedGraphemeClusterLiteralType,
-    Self.UnicodeScalarLiteralType == ID.UnicodeScalarLiteralType
-{
+public extension IDValue where ID: ExpressibleByStringLiteral {
     
-//    typealias StringLiteralType = ID.StringLiteralType
-//    typealias ExtendedGraphemeClusterLiteralType = ID.ExtendedGraphemeClusterLiteralType
-//    typealias UnicodeScalarLiteralType = ID.UnicodeScalarLiteralType
+    typealias StringLiteralType = ID.StringLiteralType
+    typealias ExtendedGraphemeClusterLiteralType = ID.ExtendedGraphemeClusterLiteralType
+    typealias UnicodeScalarLiteralType = ID.UnicodeScalarLiteralType
     
     public init(stringLiteral value: StringLiteralType) {
         self.init(ID(stringLiteral: value))
@@ -86,13 +64,9 @@ public extension IDValue where
     }
 }
 
-public extension IDValue where
-    Self: ExpressibleByIntegerLiteral,
-    ID: ExpressibleByIntegerLiteral,
-    Self.IntegerLiteralType == ID.IntegerLiteralType
-{
+public extension IDValue where ID: ExpressibleByIntegerLiteral {
     
-//    typealias IntegerLiteralType = ID.IntegerLiteralType
+    typealias IntegerLiteralType = ID.IntegerLiteralType
     
     public init(integerLiteral value: IntegerLiteralType) {
         self.init(ID(integerLiteral: value))
