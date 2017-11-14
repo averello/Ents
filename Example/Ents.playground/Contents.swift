@@ -4,6 +4,22 @@ import UIKit
 import Ents
 import PlaygroundSupport
 
+let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 400, height: 400))
+let view = UIView(frame: frame)
+
+let red = UIView(frame: frame.with(width: 50).with(height: 50))
+red.backgroundColor = UIColor.red
+view.addSubview(red)
+
+
+
+
+
+//let topCenter = UIView.equalTopCenter()
+//topCenter(red, view)
+
+PlaygroundPage.current.liveView = view
+
 //var q2: FIFO<Int> = [1,2,3]
 //
 //q2.startIndex
@@ -59,36 +75,36 @@ import PlaygroundSupport
 //list.cdr().cdr().cdr().cdr()
 
 
-struct Person {
-    let first: String
-    let last: String
-    let yearOfBirth: Int
-}
-
-let people = [
-    Person(first: "Jo", last: "Smith", yearOfBirth: 1970),
-    Person(first: "Joe", last: "Smith", yearOfBirth: 1970),
-    Person(first: "Joe", last: "Smyth", yearOfBirth: 1970),
-    Person(first: "Joanne", last: "smith", yearOfBirth: 1985),
-    Person(first: "Joanne", last: "smith", yearOfBirth: 1970),
-    Person(first: "Robert", last: "Jones", yearOfBirth: 1970)
-]
-
-//let sortByYearAlt: SortDescriptor<Person>
-//    = sortDescriptor(key: { $0.yearOfBirth }, <)
-//print(people.sorted(by: sortByYearAlt))
-
-let sortByYear: SortDescriptor<Person>
-    = sortDescriptor(key: {$0.yearOfBirth})
-
-let sortByFirstName: SortDescriptor<Person>
-    = sortDescriptor(key: {$0.first}, String.localizedCaseInsensitiveCompare)
-
-let sortByLastName: SortDescriptor<Person>
-    = sortDescriptor(key: {$0.last}, String.localizedCaseInsensitiveCompare)
-
-let combined: SortDescriptor<Person> =
-    combine(sortDescriptors: [sortByLastName, sortByFirstName, sortByYear])
+//struct Person {
+//    let first: String
+//    let last: String
+//    let yearOfBirth: Int
+//}
+//
+//let people = [
+//    Person(first: "Jo", last: "Smith", yearOfBirth: 1970),
+//    Person(first: "Joe", last: "Smith", yearOfBirth: 1970),
+//    Person(first: "Joe", last: "Smyth", yearOfBirth: 1970),
+//    Person(first: "Joanne", last: "smith", yearOfBirth: 1985),
+//    Person(first: "Joanne", last: "smith", yearOfBirth: 1970),
+//    Person(first: "Robert", last: "Jones", yearOfBirth: 1970)
+//]
+//
+////let sortByYearAlt: SortDescriptor<Person>
+////    = sortDescriptor(key: { $0.yearOfBirth }, <)
+////print(people.sorted(by: sortByYearAlt))
+//
+//let sortByYear: SortDescriptor<Person>
+//    = sortDescriptor(key: {$0.yearOfBirth})
+//
+//let sortByFirstName: SortDescriptor<Person>
+//    = sortDescriptor(key: {$0.first}, String.localizedCaseInsensitiveCompare)
+//
+//let sortByLastName: SortDescriptor<Person>
+//    = sortDescriptor(key: {$0.last}, String.localizedCaseInsensitiveCompare)
+//
+//let combined: SortDescriptor<Person> =
+//    combine(sortDescriptors: [sortByLastName, sortByFirstName, sortByYear])
 //print(people.sorted(by: combined))
 
 
