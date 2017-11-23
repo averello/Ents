@@ -10,19 +10,21 @@
 import Foundation
 
 public protocol RandomNumberProtocol {
-    associatedtype Base: BinaryInteger
+    associatedtype Base: FixedWidthInteger
     
     var value: Base { get }
 }
 
-public struct RandomNumber<I>: RandomNumberProtocol where I: BinaryInteger {
+public struct RandomNumber<I>: RandomNumberProtocol where I: FixedWidthInteger {
     public let value: I
     public init() {
-        self.value = numericCast(arc4random()) as I
+        var b = I(0)
+        arc4random_buf(&b, MemoryLayout.size(ofValue: b))
+        self.value = b
     }
 }
 
-public struct UpperBoundRandomNumber<I>: RandomNumberProtocol where I: BinaryInteger {
+public struct UpperBoundRandomNumber<I>: RandomNumberProtocol where I: FixedWidthInteger {
     public let value: I
     
     public init(_ upperBound: I) {
@@ -30,12 +32,21 @@ public struct UpperBoundRandomNumber<I>: RandomNumberProtocol where I: BinaryInt
     }
     
     public init(upperBound: I) {
-        let u = numericCast(upperBound) as UInt32
-        self.value = numericCast(arc4random_uniform(u)) as I
+        let max = I.max
+        let range = max - max % upperBound
+        
+        // Generate arbitrary-bit random value in a range that is
+        // divisible by upperBound:
+        var b = I(0)
+        let u = upperBound
+        repeat {
+            arc4random_buf(&b, MemoryLayout.size(ofValue: b))
+        } while b >= range
+        self.value = b % u
     }
 }
 
-public struct RangedRandomNumber<I>: RandomNumberProtocol where I: BinaryInteger {
+public struct RangedRandomNumber<I>: RandomNumberProtocol where I: FixedWidthInteger {
     public let value: I
     
     // interval [lower,upper)
@@ -45,3 +56,4 @@ public struct RangedRandomNumber<I>: RandomNumberProtocol where I: BinaryInteger
         self.value = lowerBound + UpperBoundRandomNumber(upperBound - lowerBound).value
     }
 }
+

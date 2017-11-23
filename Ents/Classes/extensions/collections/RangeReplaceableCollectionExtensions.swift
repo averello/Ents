@@ -81,6 +81,15 @@ public extension RangeReplaceableCollection {
     }
 }
 
+extension RangeReplaceableCollection where Self.Iterator.Element: AnyObject {
+    
+    public mutating func remove(element: AnyObject) {
+        self.remove(elementsSatisfying: { (e: Element) -> Bool in
+            return (e === element)
+        })
+    }
+}
+
 //public extension RangeReplaceableCollection
 //where Self.Iterator.Element: Comparable,
 //    Self.IndexDistance: Integer,

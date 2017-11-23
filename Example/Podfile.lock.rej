@@ -1,0 +1,17 @@
+diff a/Example/Podfile.lock b/Example/Podfile.lock	(rejected hunks)
+@@ -1,5 +1,5 @@
+ PODS:
+-  - Ents (2.2)
++  - Ents (2.4)
+ 
+ DEPENDENCIES:
+   - Ents (from `../`)
+@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
+     :path: ../
+ 
+ SPEC CHECKSUMS:
+-  Ents: 1911f5acb813c56b9a0acf0d550e618d642d1335
++  Ents: cd687326beedd8768f423cb9ccbfb5693f088a72
+ 
+ PODFILE CHECKSUM: 0b9e5caf1b2da8ef7fb9ef202432eded92c8ab50
+ 
