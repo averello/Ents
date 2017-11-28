@@ -84,8 +84,8 @@ public extension Bool {
     ///
     /// - parameter other: another boolean to do an `||`
     /// - returns: the result of OR-ing self and other
-    public func or(_ other: Bool) -> Bool {
-        return self || other
+    public func or(_ other: @autoclosure () -> Bool) -> Bool {
+        return self || other()
     }
 
     /// Provides a more natural language interface to `!=`.
