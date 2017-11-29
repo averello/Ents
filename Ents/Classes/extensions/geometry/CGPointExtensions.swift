@@ -123,6 +123,14 @@ public extension CGPoint {
 
 public extension CGPoint {
     
+    /// creates a point translated by the given offest
+    public func offseted(_ offset: UIOffset) -> CGPoint {
+        return self.translatedBy(dx: offset.horizontal, dy: offset.vertical)
+    }
+}
+
+public extension CGPoint {
+    
     /// returns a Boolean indicating wether the receiver is on the left of the 
     /// passed in argument
     /// - parameter other: another point
