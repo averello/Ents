@@ -119,8 +119,8 @@ public extension CGSize {
     /// - parameter dx: the factor to scale `width`.
     /// - parameter dy: the factor to scale `height`.
     public mutating func scale(_ dx: CGFloat, dy: CGFloat) {
-        self.width += dx
-        self.height += dy
+        self.width *= dx
+        self.height *= dy
     }
 }
 

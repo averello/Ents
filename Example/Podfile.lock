@@ -1,5 +1,5 @@
 PODS:
-  - Ents (2.5.2)
+  - Ents (2.5.3)
 
 DEPENDENCIES:
   - Ents (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Ents: b8642d4d446366c7b9b5a6f394a54e609dd88813
+  Ents: 220535f02bce3af8b943ee70463ceb09e6a18c41
 
 PODFILE CHECKSUM: 0b9e5caf1b2da8ef7fb9ef202432eded92c8ab50
 
