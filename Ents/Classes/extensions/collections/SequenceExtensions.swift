@@ -58,3 +58,13 @@ public extension Sequence where Iterator.Element: Hashable {
     }
 }
 
+public extension Sequence {
+    
+    public func forEach(_ block: (Iterator.Element) throws -> () throws -> Void) rethrows {
+        try self.forEach { (element: Iterator.Element) -> Void in
+            // call 'closure' to get an instance method
+            // then run it
+            try block(element)()
+        }
+    }
+}
