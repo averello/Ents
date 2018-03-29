@@ -15,8 +15,8 @@ fileprivate extension UIView {
     /// view with the same given keypath.
     /// - parameter keyPath: the keypath
     /// - parameter other: the other view
-    final fileprivate func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
-                                           to other: UIView) {
+    final fileprivate func equal<Property, V>(_ keyPath: ReferenceWritableKeyPath<V, Property>,
+                                              to other: V) where V: UIView {
         self.equal(keyPath, to: other, keyPath)
     }
     
@@ -25,56 +25,57 @@ fileprivate extension UIView {
     /// - parameter keyPath: the keypath
     /// - parameter other: the other view
     /// - parameter otherKeyPath: the other view's keypath
-    final fileprivate func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
-                                           to other: UIView,
-                                           _ otherKeyPath: KeyPath<UIView, Property>) {
+    final fileprivate func equal<Property, V>(_ keyPath: ReferenceWritableKeyPath<V, Property>,
+                                              to other: V,
+                                              _ otherKeyPath: KeyPath<V, Property>) where V: UIView {
         self.set(keyPath, toValue: other[keyPath: otherKeyPath])
     }
     
     /// Sets the property described by the given keypath
     /// - parameter keyPath: the keypath
     /// - parameter value: the value
-    final private func set<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
-                                     toValue value: Property) {
+    final private func set<Property, V>(_ keyPath: ReferenceWritableKeyPath<V, Property>,
+                                        toValue value: Property) where V: UIView {
+        self._set(keyPath as! ReferenceWritableKeyPath<UIView, Property>, toValue: value)
+    }
+    
+    /// Sets the property described by the given keypath to the concrete type UIView
+    /// - parameter keyPath: the keypath
+    /// - parameter value: the value
+    final private func _set<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
+                                      toValue value: Property) {
         self[keyPath: keyPath] = value
     }
 }
 
-
 public extension UIView {
     
-    
-        
     public typealias LayoutPropertyDescription<A,B> = (_ view1: A, _ view2: B) -> Void where A: UIView, B: UIView
     public typealias HierarchicalLayoutPropertyDescription<A,B> = LayoutPropertyDescription<A,B> where A: UIView, B: UIView
     public typealias LayoutPropertyConverter<Property, A, B> = (_ property: Property, _ view1: A, _ view2: B) -> Property where A: UIView, B: UIView
-
     
-    public typealias AnyLayoutPropertyDescription = LayoutPropertyDescription<UIView, UIView>
-    public typealias AnyHierarchicalLayoutPropertyDescription = AnyLayoutPropertyDescription
-    public typealias AnyLayoutPropertyConverter<Property> = LayoutPropertyConverter<Property, UIView, UIView>
     
     /// Declares the equity of the same keyPaths of two views.
     ///
     /// - parameter keyPath: the key path of the views' property
     /// - returns: A closure that equates the properties of its two receivers
     /// described by the given path.
-    public static func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>) -> AnyLayoutPropertyDescription {
-        return UIView.equal(keyPath, keyPath)
+    public static func equal<Property, V>(_ keyPath: ReferenceWritableKeyPath<V, Property>) -> LayoutPropertyDescription<V, V> where V: UIView {
+        return V.equal(keyPath, keyPath)
     }
     
-    /// Declares the equity of two keyPaths of two views.
-    ///
-    /// - parameter keyPath: the key path of the first view's property
-    /// - parameter otherKeyPath: the key path of the first view's property
-    /// - returns: A closure that equates the properties of its two receivers
-    /// described by the given paths.
-    public static func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
-                                       _ otherKeyPath: KeyPath<UIView, Property>) -> AnyLayoutPropertyDescription {
-        return { (view1: UIView, view2: UIView) in
-            view1.equal(keyPath, to: view2, otherKeyPath)
-            } as LayoutPropertyDescription
-    }
+//    /// Declares the equity of two keyPaths of two views.
+//    ///
+//    /// - parameter keyPath: the key path of the first view's property
+//    /// - parameter otherKeyPath: the key path of the first view's property
+//    /// - returns: A closure that equates the properties of its two receivers
+//    /// described by the given paths.
+//    public static func equal<Property, V>(_ keyPath: ReferenceWritableKeyPath<V, Property>,
+//                                          _ otherKeyPath: KeyPath<V, Property>) -> LayoutPropertyDescription<V,V> where V: UIView {
+//        return { (view1: V, view2: V) in
+//            view1.equal(keyPath, to: view2, otherKeyPath)
+//            } as LayoutPropertyDescription<V, V>
+//    }
     
     /// Declares the equity of two keyPaths of two views.
     ///
@@ -83,14 +84,23 @@ public extension UIView {
     /// - parameter converter: a transformation closure
     /// - returns: A closure that equates the properties of its two receivers
     /// described by the given paths.
-    public static func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
-                                       _ otherKeyPath: KeyPath<UIView, Property>,
-                                       converter: @escaping AnyLayoutPropertyConverter<Property> = { value,_,_ in return value } ) -> AnyLayoutPropertyDescription {
-        return { (view1: UIView, view2: UIView) in
+    public static func equal<Property, V>(_ keyPath: ReferenceWritableKeyPath<V, Property>,
+                                          _ otherKeyPath: KeyPath<V, Property>,
+                                          converter: @escaping LayoutPropertyConverter<Property, V, V> = { value,_,_ in return value } ) -> LayoutPropertyDescription<V, V> where V: UIView {
+        return { (view1: V, view2: V) in
             let v2 = view2[keyPath: otherKeyPath]
             view1[keyPath: keyPath] = converter(v2, view1, view2)
-            } as LayoutPropertyDescription
+            } as LayoutPropertyDescription<V, V>
     }
+}
+
+
+public extension UIView {
+    
+    public typealias AnyLayoutPropertyDescription = LayoutPropertyDescription<UIView, UIView>
+    public typealias AnyHierarchicalLayoutPropertyDescription = AnyLayoutPropertyDescription
+    public typealias AnyLayoutPropertyConverter<Property> = LayoutPropertyConverter<Property, UIView, UIView>
+    
 }
 
 public extension UIView {

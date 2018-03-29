@@ -16,7 +16,16 @@ class Tests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        let parent = UIView(frame: CGRect.zero.with(size: CGSize(width: 100, height: 50)))
+        let child = UIView(frame: CGRect.zero.with(size: CGSize(width: 50, height: 25)))
+        
+        let layout = UIView.equal(\.frameLeftCenter, \.ownLeftCenter)
+        layout(child, parent)
+        let childFrame = child.frame
+        UIView.equalLeftCenters(child, parent)
+        XCTAssert((childFrame == child.frame), "Pass")
+        
+        XCTAssert((child.frameLeftCenter == parent.ownLeftCenter), "Pass")
     }
     
     func testPerformanceExample() {
