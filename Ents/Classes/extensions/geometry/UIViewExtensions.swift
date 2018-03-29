@@ -36,20 +36,20 @@ public extension UIView {
     /// sets the center of the view using a specific anchor point.
     /// - parameter point: the anchor point to use.
     /// - parameter block: a closure that returns the new center of the receiver.
-    final public func center(withAnchorPoint point: CGPoint, _ block: (UIView) -> CGPoint) {
+    final public func center<V>(withAnchorPoint point: CGPoint, _ block: (V) -> CGPoint) where V: UIView {
         let anchorPoint = self.layer.anchorPoint
         self.layerAnchorPoint = point
-        self.center = block(self)
+        self.center = block(self as! V)
         self.layerAnchorPoint = anchorPoint
     }
     
     /// Evaluates the given closure with no transform applied to the receiver,
     /// passing the receiver as its argument.
     /// - parameter block: a closure to evaluate without transformations.
-    final public func withoutTransform(_ block: (UIView) -> Void) {
+    final public func withoutTransform<V>(_ block: (V) -> Void) where V: UIView {
         let transform = self.transform
         self.transform = CGAffineTransform.identity
-        block(self)
+        block(self as! V)
         self.transform = transform
     }
 }
