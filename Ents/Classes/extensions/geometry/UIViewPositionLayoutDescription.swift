@@ -43,16 +43,23 @@ fileprivate extension UIView {
 
 public extension UIView {
     
-    public typealias LayoutPropertyDescription = (_ view1: UIView, _ view2: UIView) -> Void
-    public typealias HierarchicalLayoutPropertyDescription = LayoutPropertyDescription
-    public typealias LayoutPropertyConverter<Property> = (_ property: Property, _ view1: UIView, _ view2: UIView) -> Property
+    
+        
+    public typealias LayoutPropertyDescription<A,B> = (_ view1: A, _ view2: B) -> Void where A: UIView, B: UIView
+    public typealias HierarchicalLayoutPropertyDescription<A,B> = LayoutPropertyDescription<A,B> where A: UIView, B: UIView
+    public typealias LayoutPropertyConverter<Property, A, B> = (_ property: Property, _ view1: A, _ view2: B) -> Property where A: UIView, B: UIView
+
+    
+    public typealias AnyLayoutPropertyDescription = LayoutPropertyDescription<UIView, UIView>
+    public typealias AnyHierarchicalLayoutPropertyDescription = AnyLayoutPropertyDescription
+    public typealias AnyLayoutPropertyConverter<Property> = LayoutPropertyConverter<Property, UIView, UIView>
     
     /// Declares the equity of the same keyPaths of two views.
     ///
     /// - parameter keyPath: the key path of the views' property
     /// - returns: A closure that equates the properties of its two receivers
     /// described by the given path.
-    public static func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>) -> LayoutPropertyDescription {
+    public static func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>) -> AnyLayoutPropertyDescription {
         return UIView.equal(keyPath, keyPath)
     }
     
@@ -63,7 +70,7 @@ public extension UIView {
     /// - returns: A closure that equates the properties of its two receivers
     /// described by the given paths.
     public static func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
-                                       _ otherKeyPath: KeyPath<UIView, Property>) -> LayoutPropertyDescription {
+                                       _ otherKeyPath: KeyPath<UIView, Property>) -> AnyLayoutPropertyDescription {
         return { (view1: UIView, view2: UIView) in
             view1.equal(keyPath, to: view2, otherKeyPath)
             } as LayoutPropertyDescription
@@ -78,7 +85,7 @@ public extension UIView {
     /// described by the given paths.
     public static func equal<Property>(_ keyPath: ReferenceWritableKeyPath<UIView, Property>,
                                        _ otherKeyPath: KeyPath<UIView, Property>,
-                                       converter: @escaping LayoutPropertyConverter<Property> = { value,_,_ in return value } ) -> LayoutPropertyDescription {
+                                       converter: @escaping AnyLayoutPropertyConverter<Property> = { value,_,_ in return value } ) -> AnyLayoutPropertyDescription {
         return { (view1: UIView, view2: UIView) in
             let v2 = view2[keyPath: otherKeyPath]
             view1[keyPath: keyPath] = converter(v2, view1, view2)
@@ -90,22 +97,22 @@ public extension UIView {
     // middles
     
     /// Declares the equity of the frame bottom center points.
-    public static var equalFrameBottomCenters: LayoutPropertyDescription {
+    public static var equalFrameBottomCenters: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameBottomCenter)
     }
     
     /// Declares the equity of the frame top center points.
-    public static var equalFrameTopCenters: LayoutPropertyDescription {
+    public static var equalFrameTopCenters: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameTopCenter)
     }
     
     /// Declares the equity of the frame left center points.
-    public static var equalFrameLeftCenters: LayoutPropertyDescription {
+    public static var equalFrameLeftCenters: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameLeftCenter)
     }
     
     /// Declares the equity of the frame right center points.
-    public static var equalFrameRightCenters: LayoutPropertyDescription {
+    public static var equalFrameRightCenters: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameRightCenter)
     }
 }
@@ -116,25 +123,25 @@ public extension UIView {
     
     /// Declares the equity of the frame bottom center point with the
     /// own-coordinate bottom center point of the other.
-    public static var equalBottomCenters: HierarchicalLayoutPropertyDescription {
+    public static var equalBottomCenters: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameBottomCenter, \.ownBottomCenter)
     }
     
     /// Declares the equity of the frame top center point with the
     /// own-coordinate top center point of the other.
-    public static var equalTopCenters: HierarchicalLayoutPropertyDescription {
+    public static var equalTopCenters: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameTopCenter, \.ownTopCenter)
     }
     
     /// Declares the equity of the frame left center point with the
     /// own-coordinate left center point of the other.
-    public static var equalLeftCenters: HierarchicalLayoutPropertyDescription {
+    public static var equalLeftCenters: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameLeftCenter, \.ownLeftCenter)
     }
     
     /// Declares the equity of the frame right center point with the
     /// own-coordinate right center point of the other.
-    public static var equalRightCenters: HierarchicalLayoutPropertyDescription {
+    public static var equalRightCenters: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameRightCenter, \.ownRightCenter)
     }
 }
@@ -144,22 +151,22 @@ public extension UIView {
     // corners
     
     /// Declares the equity of the frame top left points.
-    public static var equalFrameTopLeft: LayoutPropertyDescription {
+    public static var equalFrameTopLeft: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameTopLeft)
     }
     
     /// Declares the equity of the frame top right points.
-    public static var equalFrameTopRight: LayoutPropertyDescription {
+    public static var equalFrameTopRight: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameTopRight)
     }
     
     /// Declares the equity of the frame bottom left points.
-    public static var equalFrameBottomLeft: LayoutPropertyDescription {
+    public static var equalFrameBottomLeft: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameBottomLeft)
     }
     
     /// Declares the equity of the frame bottom right points.
-    public static var equalFrameBottomRight: LayoutPropertyDescription {
+    public static var equalFrameBottomRight: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameBottomRight)
     }
 }
@@ -170,25 +177,25 @@ public extension UIView {
     
     /// Declares the equity of the frame top left point with the
     /// own-coordinate top left point of the other.
-    public static var equalTopLeft: HierarchicalLayoutPropertyDescription {
+    public static var equalTopLeft: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameTopLeft, \.ownTopLeft)
     }
     
     /// Declares the equity of the frame top right point with the
     /// own-coordinate top right point of the other.
-    public static var equalTopRight: HierarchicalLayoutPropertyDescription {
+    public static var equalTopRight: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameTopRight, \.ownTopRight)
     }
     
     /// Declares the equity of the frame bottom left point with the
     /// own-coordinate bottom left point of the other.
-    public static var equalBottomLeft: HierarchicalLayoutPropertyDescription {
+    public static var equalBottomLeft: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameBottomLeft, \.ownBottomLeft)
     }
     
     /// Declares the equity of the frame bottom right point with the
     /// own-coordinate bottom right point of the other.
-    public static var equalBottomRight: HierarchicalLayoutPropertyDescription {
+    public static var equalBottomRight: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameBottomRight, \.ownBottomRight)
     }
     
@@ -199,7 +206,7 @@ public extension UIView {
     // center
     
     /// Declares the equity of the center points.
-    public static var equalFrameCenters: LayoutPropertyDescription {
+    public static var equalFrameCenters: AnyLayoutPropertyDescription {
         return UIView.equal(\.center)
     }
     
@@ -209,7 +216,7 @@ public extension UIView {
     
     /// Declares the equity of the center point with the
     /// own-coordinate center point of the other.
-    public static var equalCenters: HierarchicalLayoutPropertyDescription {
+    public static var equalCenters: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.center, \.ownCenter)
     }
     
@@ -220,52 +227,52 @@ public extension UIView {
     // sizes
     
     /// Declares the equity of frame sizes.
-    public static var equalFrameSizes: LayoutPropertyDescription {
+    public static var equalFrameSizes: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameSize)
     }
     
 }
 
 public extension UIView {
-
+    
     /// Declares the equity of bound sizes.
-    public static var equalBoundSizes: LayoutPropertyDescription {
+    public static var equalBoundSizes: AnyLayoutPropertyDescription {
         return UIView.equal(\.boundsSize)
     }
 }
 
 
 public extension UIView {
-
+    
     // one dimensions
     
     /// Declares the equity of the frame left edge.
-    public static var equalFrameLeft: LayoutPropertyDescription {
+    public static var equalFrameLeft: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameLeft)
     }
     
     /// Declares the equity of the frame right edge.
-    public static var equalFrameRight: LayoutPropertyDescription {
+    public static var equalFrameRight: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameRight)
     }
     
     /// Declares the equity of the frame top edge.
-    public static var equalFrameTop: LayoutPropertyDescription {
+    public static var equalFrameTop: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameTop)
     }
     
     /// Declares the equity of the frame bottom edge.
-    public static var equalFrameBottom: LayoutPropertyDescription {
+    public static var equalFrameBottom: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameBottom)
     }
     
     /// Declares the equity of the center x.
-    public static var equalFrameCenterX: LayoutPropertyDescription {
+    public static var equalFrameCenterX: AnyLayoutPropertyDescription {
         return UIView.equal(\.centerX)
     }
-
+    
     /// Declares the equity of the center y.
-    public static var equalFrameCenterY: LayoutPropertyDescription {
+    public static var equalFrameCenterY: AnyLayoutPropertyDescription {
         return UIView.equal(\.centerX)
     }
 }
@@ -275,22 +282,22 @@ public extension UIView {
     // one dimensions
     
     /// Declares the equity of the frame width.
-    public static var equalFrameWidth: LayoutPropertyDescription {
+    public static var equalFrameWidth: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameWidth)
     }
     
     /// Declares the equity of the frame height.
-    public static var equalFrameHeight: LayoutPropertyDescription {
+    public static var equalFrameHeight: AnyLayoutPropertyDescription {
         return UIView.equal(\.frameHeight)
     }
     
     /// Declares the equity of the bounds width.
-    public static var equalBoundsWidth: LayoutPropertyDescription {
+    public static var equalBoundsWidth: AnyLayoutPropertyDescription {
         return UIView.equal(\.boundsWidth)
     }
     
     /// Declares the equity of the bounds height.
-    public static var equalBoundsHeight: LayoutPropertyDescription {
+    public static var equalBoundsHeight: AnyLayoutPropertyDescription {
         return UIView.equal(\.boundsHeight)
     }
 }
@@ -302,37 +309,37 @@ public extension UIView {
     
     /// Declares the equity of the left edge with the
     /// own-coordinate left edge of the other.
-    public static var equalLeft: HierarchicalLayoutPropertyDescription {
+    public static var equalLeft: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameLeft, \.ownLeft)
     }
     
     /// Declares the equity of the right edge with the
     /// own-coordinate right edge of the other.
-    public static var equalRight: HierarchicalLayoutPropertyDescription {
+    public static var equalRight: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameRight, \.ownRight)
     }
     
     /// Declares the equity of the top edge with the
     /// own-coordinate top edge of the other.
-    public static var equalTop: HierarchicalLayoutPropertyDescription {
+    public static var equalTop: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameTop, \.ownTop)
     }
     
     /// Declares the equity of the bottom edge with the
     /// own-coordinate bottom edge of the other.
-    public static var equalBottom: HierarchicalLayoutPropertyDescription {
+    public static var equalBottom: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameBottom, \.ownBottom)
     }
     
     /// Declares the equity of the center x with the
     /// own-coordinate center x of the other.
-    public static var equalCenterX: HierarchicalLayoutPropertyDescription {
+    public static var equalCenterX: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.centerX, \.ownCenterX)
     }
     
     /// Declares the equity of the center y with the
     /// own-coordinate center y of the other.
-    public static var equalCenterY: HierarchicalLayoutPropertyDescription {
+    public static var equalCenterY: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.centerY, \.ownCenterY)
     }
 }
@@ -343,13 +350,14 @@ public extension UIView {
     
     /// Declares the equity of the frame width with the
     /// own-coordinate bounds width of the other.
-    public static var equalWidth: HierarchicalLayoutPropertyDescription {
+    public static var equalWidth: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameWidth, \.boundsWidth)
     }
     
     /// Declares the equity of the frame height with the
     /// own-coordinate bounds height of the other.
-    public static var equalHeight: HierarchicalLayoutPropertyDescription {
+    public static var equalHeight: AnyHierarchicalLayoutPropertyDescription {
         return UIView.equal(\.frameHeight, \.boundsHeight)
     }
 }
+
