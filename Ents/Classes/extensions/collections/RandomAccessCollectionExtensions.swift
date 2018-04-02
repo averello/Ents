@@ -63,7 +63,7 @@ public extension RandomAccessCollection {
             return nil
         }
         let count = self.count
-        let offset = Self.IndexDistance(count/2)
+        let offset = Int(count/2)
         return self.index(self.startIndex, offsetBy: offset)
     }
     
@@ -71,7 +71,7 @@ public extension RandomAccessCollection {
         guard self.hasElements else { return nil }
         
         let count = self.count
-        let offset = Self.IndexDistance(count/2)
+        let offset = Int(count/2)
         return self.index(self.startIndex, offsetBy: offset)
     }
 }
@@ -89,7 +89,7 @@ public extension RandomAccessCollection {
         guard self.hasElements else { return nil }
         guard self.count > 1 else { return self[self.startIndex] } // optimization
         
-        let random = Self.IndexDistance(arc4random_uniform(numericCast(self.count) as UInt32))
+        let random = Int(arc4random_uniform(numericCast(self.count) as UInt32))
         let index = self.index(self.startIndex, offsetBy: random)
         return self.element(atIndex: index)
     }

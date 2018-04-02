@@ -1,6 +1,6 @@
 {
   "name": "Ents",
-  "version": "2.7",
+  "version": "3.0",
   "summary": "A collection of handy extensions for Swift.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/averello/Ents",
@@ -13,13 +13,15 @@
   },
   "source": {
     "git": "https://github.com/averello/Ents.git",
-    "tag": "2.7"
+    "tag": "3.0"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "Ents/Classes/**/*",
   "xcconfig": {
-    "OTHER_SWIFT_FLAGS[config=Debug]": "-DDEBUG"
+    "OTHER_SWIFT_FLAGS[config=Debug]": "-DDEBUG",
+    "SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]": "DEBUG",
+    "SWIFT_VERSION": "4.0"
   }
 }

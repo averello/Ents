@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Ents'
-  s.version          = '2.7'
+  s.version          = '3.0'
   s.summary          = 'A collection of handy extensions for Swift.'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,11 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'Ents/Classes/**/*'
 
-  s.xcconfig = { "OTHER_SWIFT_FLAGS[config=Debug]" => '-DDEBUG' }
+  s.xcconfig = { 
+	  "OTHER_SWIFT_FLAGS[config=Debug]" => '-DDEBUG',
+	  "SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]" => 'DEBUG',
+	  "SWIFT_VERSION" => '4.0',
+  }
   
   # s.resource_bundles = {
   #   'Ents' => ['Ents/Assets/*.png']

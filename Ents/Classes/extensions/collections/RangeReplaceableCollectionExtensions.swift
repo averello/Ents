@@ -73,7 +73,7 @@ public extension RangeReplaceableCollection {
         return try Self(self.sieve(predicate))
     }
     
-    /// remove elements that satisfy the given predicate
+    /// Remove elements that satisfy the given predicate
     /// - Parameter predicate: the predicate
     /// - SeeAlso: sieve(:)
     public mutating func remove(elementsSatisfying predicate: (Self.Iterator.Element) throws -> Bool) rethrows {
@@ -81,9 +81,9 @@ public extension RangeReplaceableCollection {
     }
 }
 
-extension RangeReplaceableCollection where Self.Iterator.Element: AnyObject {
+extension RangeReplaceableCollection where Self.Element: AnyObject {
     
-    public mutating func remove(element: AnyObject) {
+    public mutating func remove(element: Element) {
         self.remove(elementsSatisfying: { (e: Element) -> Bool in
             return (e === element)
         })

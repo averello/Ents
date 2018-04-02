@@ -76,14 +76,14 @@ extension FIFO: ExpressibleByArrayLiteral {
 extension FIFO: CustomStringConvertible {
     
     public var description: String {
-        let elements = self.left.flatMap { $0 } + self.right.flatMap { $0 }
+        let elements = self.left.compactMap { $0 } + self.right.compactMap { $0 }
         return String(describing: type(of: self)) + "\(elements)"
     }
 }
 
-extension FIFO: CustomPlaygroundQuickLookable {
+extension FIFO: CustomPlaygroundDisplayConvertible {
     
-    public var customPlaygroundQuickLook: PlaygroundQuickLook {
-        return PlaygroundQuickLook.text(self.description)
+    public var playgroundDescription: Any {
+        return self.description
     }
 }

@@ -402,13 +402,12 @@ extension Value where T: Collection {
     
     public typealias Element = T.Iterator.Element
     public typealias Index = T.Index
-    public typealias IndexDistance = T.IndexDistance
     public typealias Iterator = T.Iterator
 
     public func makeIterator() -> Iterator { return self.value.makeIterator() }
     public var startIndex: Index { return self.value.startIndex }
     public var endIndex: Index { return self.value.endIndex }
-    public var count: IndexDistance { return self.value.count }
+    public var count: Int { return self.value.count }
     public subscript(i: Index) -> Element { return self.value[i] }
     public func index(after i: Index) -> Index { return self.value.index(after: i) }
 }
