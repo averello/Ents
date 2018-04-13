@@ -18,7 +18,6 @@ public extension UIEdgeInsets {
     public var verticalInset: CGFloat {
         return self.top + self.bottom
     }
-    
 }
 
 public extension UIEdgeInsets {
@@ -39,5 +38,22 @@ public extension UIEdgeInsets {
         case UIEdgeInsets.Dimension.vertical:
             return size.subtracting(height: self.verticalInset)
         }
+    }
+}
+
+public extension UIEdgeInsets {
+    
+    public var horizontalInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 0,
+                            left: self.left,
+                            bottom: 0,
+                            right: self.right)
+    }
+    
+    public var verticalInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: self.top,
+                            left: 0,
+                            bottom: self.bottom,
+                            right: 0)
     }
 }
