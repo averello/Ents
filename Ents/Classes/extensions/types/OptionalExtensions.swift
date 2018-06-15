@@ -37,6 +37,11 @@ public extension Optional {
             self = try materialize()
         }
     }
+
+    public var optionalDescription: String {
+        guard let a = self else { return String(describing: self) }
+        return String(describing: a)
+    }
 }
 
 
