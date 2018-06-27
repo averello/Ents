@@ -9,7 +9,7 @@
 
 import Foundation
 
-public final class Alarm {
+public final class Alarm: CustomDebugStringConvertible {
     final fileprivate let notifyBlock: (() -> Void)!
     final fileprivate var lazyTimer: Lazy<Timer>!
     final let queue: DispatchQueue
@@ -90,6 +90,17 @@ public final class Alarm {
         self._perform {
             self._cancel()
         }
+    }
+
+    public var debugDescription: String {
+        return "<"
+            + "\(String(describing: type(of: self))): \(Unmanaged.passRetained(self).toOpaque());"
+            + " name = \"\(self.name)\";"
+            + " interval = \"\(self.interval)\"[~\"\(self.tolerance)\"];"
+            + " repeats = \"\(self.repeats ? "yes" : "no")\";"
+            + " queue = \(self.queue);"
+            + " userInfo = \(self.userInfo.optionalDescription);"
+            + ">"
     }
 }
 
