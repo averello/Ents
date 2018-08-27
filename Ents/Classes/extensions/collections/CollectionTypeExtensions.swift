@@ -107,18 +107,18 @@ public extension Collection {
 	private func _forEachIterateLoop(with range: Range<Self.Index>,
 	                                 body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
         try self.__forEachIterateLoop(with: range) { (i, e, b) in
-            try body(i,e)
+            try body(i, e)
         }
 	}
     
     private func __forEachIterateLoop(with range: Range<Self.Index>,
                                       body: (Self.Index, Self.Iterator.Element, _ stop: inout Bool) throws -> Void) rethrows {
-        var i = range.lowerBound
+        var currentIndex = range.lowerBound
         var stop = false
-        while (i < range.upperBound) && (stop == false) {
-            let element = self[i]
-            try body(i, element, &stop)
-            i = self.index(after: i)
+        while (currentIndex < range.upperBound).and(stop == false) {
+            let element = self[currentIndex]
+            try body(currentIndex, element, &stop)
+            currentIndex = self.index(after: currentIndex)
         }
     }
 
@@ -131,12 +131,12 @@ public extension Collection {
     
     private func __forEachIterateLoopInReverse(with range: Range<Self.Index>,
                                                body: (Self.Index, Self.Iterator.Element, _ stop: inout Bool) throws -> Void) rethrows {
-        var i = self.index(range.upperBound, offsetBy: -1)
+        var currentIndex = self.index(range.upperBound, offsetBy: -1)
         var stop = false
-        while (i >= range.lowerBound) && (stop == false) {
-            let element = self[i]
-            try body(i, element, &stop)
-            i = self.index(i, offsetBy: -1)
+        while (currentIndex >= range.lowerBound).and(stop == false) {
+            let element = self[currentIndex]
+            try body(currentIndex, element, &stop)
+            currentIndex = self.index(currentIndex, offsetBy: -1)
         }
     }
     
@@ -145,7 +145,8 @@ public extension Collection {
     /// indicator to stop prematurely the iteration.
     /// Tris to replicate `-enumerateObjectsUsingBlock:` of `NSArray`.
     public func enumerate(_ body: (Self.Index, Self.Iterator.Element, _ stop: inout Bool) throws -> Void) rethrows {
-        try self.__forEachIterateLoop(with: self.wholeRange, body: body)
+        try self.__forEachIterateLoop(with: self.wholeRange,
+                                      body: body)
     }
 }
 

@@ -21,6 +21,44 @@ public extension UIEdgeInsets {
 }
 
 public extension UIEdgeInsets {
+
+    public var topOffset: UIOffset {
+        return UIOffset(horizontal: 0, vertical: self.top)
+    }
+
+    public var bottomOffset: UIOffset {
+        return UIOffset(horizontal: 0, vertical: -self.bottom)
+    }
+
+    public var leftOffset: UIOffset {
+        return UIOffset(horizontal: self.left, vertical: 0)
+    }
+
+    public var rightOffset: UIOffset {
+        return UIOffset(horizontal: -self.right, vertical: 0)
+    }
+}
+
+public extension UIEdgeInsets {
+
+    public var topLeftOffset: UIOffset {
+        return UIOffset(horizontal: self.left, vertical: self.top)
+    }
+
+    public var topRightOffset: UIOffset {
+        return UIOffset(horizontal: -self.right, vertical: self.top)
+    }
+
+    public var bottomLeftOffset: UIOffset {
+        return UIOffset(horizontal: self.left, vertical: -self.bottom)
+    }
+
+    public var bottomRightOffset: UIOffset {
+        return UIOffset(horizontal: -self.right, vertical: -self.bottom)
+    }
+}
+
+public extension UIEdgeInsets {
     
     public func inset(rect: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(rect, self)
