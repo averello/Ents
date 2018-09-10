@@ -119,46 +119,101 @@ extension RangeReplaceableCollection where Self.Element: AnyObject {
     }
 }
 
-//public extension RangeReplaceableCollection
-//where Self.Iterator.Element: Comparable,
-//    Self.IndexDistance: Integer,
-//    Self.Index == Self.IndexDistance,
-//Self.SubSequence.Iterator.Element == Self.Iterator.Element {
-//    
-//    public mutating func mergeSortInPlace() {
-//        var tmp: [Self.Iterator.Element] = []
-//        tmp.reserveCapacity(Int(self.count.toIntMax()))
-//        
-//        func merge(lo: Self.Index, mi: Self.Index, hi: Self.Index) {
-//            tmp.removeAll(keepingCapacity: true)
-//            
-//            var i = lo, j = mi
-//            while i != mi && j != hi {
-//                let sj = self[j], si = self[i]
-//                if sj < si {
-//                    tmp.append(sj)
-//                    j = self.index(after: j)
-//                }
-//                else {
-//                    tmp.append(si)
-//                    i = self.index(after: i)
-//                }
-//            }
-//            print("i = \(i), j = \(j), (lo,mi,hi) = (\(lo),\(mi),\(hi))")
-//            tmp.append(contentsOf: self[i..<mi])
-//            tmp.append(contentsOf: self[j..<hi])
-//            self.replaceSubrange(lo..<hi, with: tmp)
-//        }
-//        
-//        let n = self.count
-//        let size = 1
-//        let end = self.endIndex-1// self.index(self.endIndex, offsetBy: -1)
-//        // n-size
-//        while size < n {
-//            for lo in stride(from: 0, to: n-size, by: size*2)
-//                merge(lo: lo, mi: (lo+size), hi: (lo+size*2).minimum(n))
-//            }
-//            size *= 2
-//        }
-//    }
-//}
+public extension RangeReplaceableCollection
+    where Self.Iterator.Element: Comparable,
+    Self.Index: BinaryInteger,
+Self.SubSequence.Iterator.Element == Self.Iterator.Element {
+
+    public func stableSorted() -> Self {
+        var copy = self
+        copy.stableSort()
+        return copy
+    }
+
+    public mutating func stableSort() {
+        var tmp = [Self.Iterator.Element]()
+        tmp.reserveCapacity(self.count)
+
+        func merge(lo: Self.Index, mi: Self.Index, hi: Self.Index) {
+            tmp.removeAll(keepingCapacity: true)
+
+            var i = lo, j = mi
+            while i != mi && j != hi {
+                let sj = self[j], si = self[i]
+                if sj < si {
+                    tmp.append(sj)
+                    j = self.index(after: j)
+                }
+                else {
+                    tmp.append(si)
+                    i = self.index(after: i)
+                }
+            }
+            print("i = \(i), j = \(j), (lo,mi,hi) = (\(lo),\(mi),\(hi))")
+            tmp.append(contentsOf: self[i..<mi])
+            tmp.append(contentsOf: self[j..<hi])
+            self.replaceSubrange(lo..<hi, with: tmp)
+        }
+
+        var size = 1
+        let start = Int(self.startIndex)
+        let end = Int(self.endIndex)
+        while size < end {
+            for lo in stride(from: start, to: end-size, by: size * 2) {
+                merge(lo: Self.Index(lo),
+                      mi: Self.Index(lo + size),
+                      hi: Self.Index((lo + size * 2).minimum(end)))
+            }
+            size *= 2
+        }
+    }
+}
+
+public extension RangeReplaceableCollection
+    where Self.Index: BinaryInteger,
+Self.SubSequence.Iterator.Element == Self.Iterator.Element {
+
+    public func stableSorted(_ areInIncreasingOrder: @escaping (Self.Iterator.Element, Self.Iterator.Element) -> Bool) -> Self {
+        var copy = self
+        copy.stableSort(areInIncreasingOrder)
+        return copy
+    }
+
+    public mutating func stableSort(_ areInIncreasingOrder: @escaping (Self.Iterator.Element, Self.Iterator.Element) -> Bool) {
+        var tmp = [Self.Iterator.Element]()
+        tmp.reserveCapacity(self.count)
+
+        func merge(lo: Self.Index, mi: Self.Index, hi: Self.Index) {
+            tmp.removeAll(keepingCapacity: true)
+
+            var i = lo, j = mi
+            while i != mi && j != hi {
+                let sj = self[j], si = self[i]
+                if areInIncreasingOrder(sj, si) {
+                    tmp.append(sj)
+                    j = self.index(after: j)
+                }
+                else {
+                    tmp.append(si)
+                    i = self.index(after: i)
+                }
+            }
+            print("i = \(i), j = \(j), (lo,mi,hi) = (\(lo),\(mi),\(hi))")
+            tmp.append(contentsOf: self[i..<mi])
+            tmp.append(contentsOf: self[j..<hi])
+            self.replaceSubrange(lo..<hi, with: tmp)
+        }
+
+        var size = 1
+        let start = Int(self.startIndex)
+        let end = Int(self.endIndex)
+        while size < end {
+            for lo in stride(from: start, to: end-size, by: size * 2) {
+                merge(lo: Self.Index(lo),
+                      mi: Self.Index(lo + size),
+                      hi: Self.Index((lo + size * 2).minimum(end)))
+            }
+            size *= 2
+        }
+    }
+}

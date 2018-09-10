@@ -4,21 +4,38 @@ import UIKit
 import Ents
 import PlaygroundSupport
 
-let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 400, height: 400))
-let view = UIView(frame: frame)
+//let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 400, height: 400))
+//let view = UIView(frame: frame)
+//
+//let red = UIView(frame: frame.with(width: 50).with(height: 50))
+//red.backgroundColor = UIColor.red
+//view.addSubview(red)
 
-let red = UIView(frame: frame.with(width: 50).with(height: 50))
-red.backgroundColor = UIColor.red
-view.addSubview(red)
+struct E {
+    let id: Int
+    let amount: Int
+}
 
+let amounts = [100, 200, 300]
 
+let entries = (0..<10).map({ (i: Int) -> E in
+    return E(id: i, amount: amounts[Int(arc4random_uniform(3))] )
+})
 
+let ids = entries
+    .stableSorted({ (e1: E, e2: E) -> Bool in
+        return e1.id < e2.id
+    })
+
+ids.stableSorted({ (e1: E, e2: E) -> Bool in
+    return e1.amount > e2.amount
+})
 
 
 //let topCenter = UIView.equalTopCenter()
 //topCenter(red, view)
 
-PlaygroundPage.current.liveView = view
+//PlaygroundPage.current.liveView = view
 
 //var q2: FIFO<Int> = [1,2,3]
 //
