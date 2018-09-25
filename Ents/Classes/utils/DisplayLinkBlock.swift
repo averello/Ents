@@ -97,18 +97,18 @@ extension DisplayLinkBlock {
 
     final fileprivate func _setupDisplayLink() {
         self.pause()
-        self.link.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+        self.link.add(to: RunLoop.current, forMode: RunLoop.Mode.default)
     }
 
     final fileprivate func _registerForNotifications() {
         let nc = NotificationCenter.default
         nc.addObserver(self,
                        selector: #selector(self._willEnterForeground),
-                       name: NSNotification.Name.UIApplicationWillEnterForeground,
+                       name: UIApplication.willEnterForegroundNotification,
                        object: nil)
         nc.addObserver(self,
                        selector: #selector(self._didEnterBackground),
-                       name: NSNotification.Name.UIApplicationDidEnterBackground,
+                       name: UIApplication.didEnterBackgroundNotification,
                        object: nil)
     }
 }

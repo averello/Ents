@@ -138,7 +138,7 @@ extension Alarm {
     final fileprivate func _schedule() {
         guard self.state == Alarm.State.idle else { return }
         RunLoop.current.add(self.lazyTimer.property,
-                            forMode: RunLoopMode.commonModes)
+                            forMode: RunLoop.Mode.common)
         self.state = Alarm.State.scheduled
     }
 

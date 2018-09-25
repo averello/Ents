@@ -61,7 +61,7 @@ public extension UIEdgeInsets {
 public extension UIEdgeInsets {
     
     public func inset(rect: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(rect, self)
+        return rect.inset(by: self)
     }
     
     public enum Dimension {
