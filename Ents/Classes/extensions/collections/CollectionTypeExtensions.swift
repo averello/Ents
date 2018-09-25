@@ -172,8 +172,8 @@ public extension Collection where Index: Strideable, Index.Stride: SignedInteger
     
     /// A range that contains all valid indexes of the collection.
     /// This range does not contain "pass the end" indexes.
-    public var wholeRange: CountableClosedRange<Self.Index> {
-        return CountableClosedRange(self.closedWholeRange)
+    public var wholeRange: Range<Self.Index> {
+        return Range(self.closedWholeRange)
     }
 }
 
