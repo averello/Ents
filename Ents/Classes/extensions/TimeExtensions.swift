@@ -19,6 +19,9 @@ public extension TimeInterval {
     /// the instant time interval == 1ms
     public static let instantly: TimeInterval = TimeInterval(1)
 
+    /// one frame time, 16ms on a 60fps device
+    public static let oneFrame: TimeInterval = TimeInterval(16)
+
     /// Returns its value in milliseconds
     /// - note: The caller should know wether the time interval is in seconds
     public var asMilliseconds: Milliseconds {
