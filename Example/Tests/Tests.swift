@@ -14,25 +14,27 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        let parent = UIView(frame: CGRect.zero.with(size: CGSize(width: 100, height: 50)))
-        let child = UIView(frame: CGRect.zero.with(size: CGSize(width: 50, height: 25)))
-        
-        let layout = UIView.equal(\.frameLeftCenter, \.ownLeftCenter)
-        layout(child, parent)
-        let childFrame = child.frame
-        UIView.equalLeftCenters(child, parent)
-        XCTAssert((childFrame == child.frame), "Pass")
-        
-        XCTAssert((child.frameLeftCenter == parent.ownLeftCenter), "Pass")
+    func testConcurrentMap() {
+        let base = Array((0..<10))
+        let transform = { (item: Int) -> Int in item * 2 }
+        let array = base.concurrentMap(transform)
+        let expected = base.map(transform)
+        XCTAssertEqual(array, expected)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
-        }
+
+    func testConcurrentFlatMap() {
+        let base = Array((0..<10)).map({ Array(repeating: $0, count: $0) })
+        let transform = { (item: [Int]) -> [Int] in item.map({$0 * 2}) }
+        let array = base.concurrentFlatMap(transform)
+        let expected = base.flatMap(transform)
+        XCTAssertEqual(array, expected)
     }
-    
+
+    func testConcurrentCompactMap() {
+        let base = Array((0..<10))
+        let transform = { (item: Int) -> Int? in return item % 2 == 0 ? item : nil }
+        let array = base.concurrentCompactMap(transform)
+        let expected = base.compactMap(transform)
+        XCTAssertEqual(array, expected)
+    }
 }
