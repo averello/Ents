@@ -149,7 +149,7 @@ Self.SubSequence.Iterator.Element == Self.Iterator.Element {
                     i = self.index(after: i)
                 }
             }
-            print("i = \(i), j = \(j), (lo,mi,hi) = (\(lo),\(mi),\(hi))")
+            //print("i = \(i), j = \(j), (lo,mi,hi) = (\(lo),\(mi),\(hi))")
             tmp.append(contentsOf: self[i..<mi])
             tmp.append(contentsOf: self[j..<hi])
             self.replaceSubrange(lo..<hi, with: tmp)
@@ -198,7 +198,7 @@ Self.SubSequence.Iterator.Element == Self.Iterator.Element {
                     i = self.index(after: i)
                 }
             }
-            print("i = \(i), j = \(j), (lo,mi,hi) = (\(lo),\(mi),\(hi))")
+            //print("i = \(i), j = \(j), (lo,mi,hi) = (\(lo),\(mi),\(hi))")
             tmp.append(contentsOf: self[i..<mi])
             tmp.append(contentsOf: self[j..<hi])
             self.replaceSubrange(lo..<hi, with: tmp)
