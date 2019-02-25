@@ -58,18 +58,21 @@ public extension CALayer {
     }
 }
 
+#if canImport(UIKit)
+import UIKit
 #if DEBUG
-    public extension CALayer {
-        public func debugQuickLookObject() -> AnyObject? {
-            let size = self.bounds.size
-            UIGraphicsBeginImageContext(size)
-            let context = UIGraphicsGetCurrentContext()
-            self.render(in: context!)
-            let image = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return image
-        }
+public extension CALayer {
+    public func debugQuickLookObject() -> AnyObject? {
+        let size = self.bounds.size
+        UIGraphicsBeginImageContext(size)
+        let context = UIGraphicsGetCurrentContext()
+        self.render(in: context!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
+}
+#endif
 #endif
 
 #endif

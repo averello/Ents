@@ -8,6 +8,8 @@
 //
 
 import Foundation
+#if canImport(QuartzCore)
+import QuartzCore
 
 public extension Double {
     
@@ -16,3 +18,5 @@ public extension Double {
         return QuartzCore.CGFloat(self)
     }
 }
+
+#endif

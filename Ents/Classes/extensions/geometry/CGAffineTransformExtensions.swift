@@ -7,8 +7,10 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
-#if canImport(CoreGraphics)
+import Foundation
+#if canImport(CoreGraphics) && canImport(QuartzCore)
 import CoreGraphics
+import QuartzCore
 
 extension CGAffineTransform {
     
