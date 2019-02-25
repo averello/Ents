@@ -7,8 +7,9 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
-#if canImport(QuartzCore)
+#if canImport(QuartzCore) && canImport(UIKit)
 import QuartzCore
+import UIKit
 
 public final class DisplayLinkBlock {
 	public typealias DisplayLinkLoopBlock = (TimeInterval) -> Void
