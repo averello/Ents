@@ -1,6 +1,6 @@
 //
 //  Value.swift
-//  EntsKit
+//  Ents
 //
 //  Created by Georges Boumis on 13/06/2016.
 //  Copyright © 2016-2017 Georges Boumis.

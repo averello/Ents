@@ -1,6 +1,6 @@
 //
 //  CGSizeRounding.swift
-//  CGSizeExtensions
+//  Ents
 //
 //  Created by Georges Boumis on 12/04/2016.
 //  Copyright © 2016-2017 Georges Boumis.
