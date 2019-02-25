@@ -8,10 +8,13 @@
 //
 
 import Foundation
-
+#if canImport(CoreFoundation)
+import CoreFoundation
 
 public func TimedBlock(_ block: () throws -> Void) rethrows -> CFTimeInterval {
     let chrono = Chronometer()
     try block()
     return chrono.difference
 }
+
+#endif

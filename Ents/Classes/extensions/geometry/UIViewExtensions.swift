@@ -7,7 +7,9 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
+#if canImport(CoreGraphics) && canImport(UIKit)
 import UIKit
+import CoreGraphics
 
 public extension UIView {
     
@@ -53,3 +55,5 @@ public extension UIView {
         self.transform = transform
     }
 }
+
+#endif

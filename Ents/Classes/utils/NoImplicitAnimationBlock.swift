@@ -8,6 +8,9 @@
 //
 
 import Foundation
+#if canImport(QuartzCore) && canImport(CoreFoundation)
+import QuartzCore
+import CoreFoundation
 
 public func NoImplicitAnimation(_ block: () throws -> Void) rethrows {
     CATransaction.begin(); defer { CATransaction.commit() }
@@ -20,3 +23,5 @@ public func ImplicitAnimation(withDuration duration: CFTimeInterval, _ block: ()
     CATransaction.setAnimationDuration(duration)
     try block()
 }
+
+#endif

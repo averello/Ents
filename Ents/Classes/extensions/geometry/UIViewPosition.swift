@@ -7,8 +7,9 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
+#if canImport(CoreGraphics) && canImport(UIKit)
 import UIKit
-
+import CoreGraphics
 
 /*
 With the following methods you can obtain and set nearly any corner or edge of
@@ -550,3 +551,5 @@ extension UIView {
 		return self
 	}
 }
+
+#endif

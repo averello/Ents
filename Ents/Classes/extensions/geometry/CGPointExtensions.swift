@@ -7,6 +7,7 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
+#if canImport(CoreGraphics)
 import CoreGraphics
 
 /// Compose two `CGFloat` to form a point operator
@@ -261,3 +262,5 @@ public extension CGPoint {
         self = self.applying(t)
     }
 }
+
+#endif

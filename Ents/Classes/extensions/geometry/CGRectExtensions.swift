@@ -7,6 +7,7 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
+#if canImport(CoreGraphics)
 import CoreGraphics
 
 infix operator ◊ : AdditionPrecedence
@@ -533,3 +534,5 @@ public extension CGRect {
         self = self.applying(t)
     }
 }
+
+#endif

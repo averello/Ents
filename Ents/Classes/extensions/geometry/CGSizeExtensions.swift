@@ -1,12 +1,13 @@
 //
 //  CGSizeRounding.swift
-//  UIViewPosition
+//  CGSizeExtensions
 //
 //  Created by Georges Boumis on 12/04/2016.
 //  Copyright © 2016-2017 Georges Boumis.
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
+#if canImport(CoreGraphics)
 import CoreGraphics
 
 /// Compose two `CGFloat` to form a CGSize operator
@@ -349,3 +350,4 @@ public extension CGSize {
     }
 }
 
+#endif

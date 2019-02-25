@@ -7,7 +7,9 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
+#if canImport(QuartzCore) && canImport(CoreGraphics)
 import QuartzCore
+import CoreGraphics
 
 public extension CALayer {
     
@@ -68,4 +70,6 @@ public extension CALayer {
             return image
         }
     }
+#endif
+
 #endif

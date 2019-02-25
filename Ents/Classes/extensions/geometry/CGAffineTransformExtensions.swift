@@ -7,7 +7,8 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
-import Foundation
+#if canImport(CoreGraphics)
+import CoreGraphics
 
 extension CGAffineTransform {
     
@@ -26,3 +27,5 @@ extension CGAffineTransform {
         self = self.concatenating(t)
     }
 }
+
+#endif

@@ -9,7 +9,6 @@
 
 import Foundation
 
-
 public protocol Value: Comparable, CustomStringConvertible {
     associatedtype T: Comparable
     var value: T { get }

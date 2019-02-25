@@ -7,7 +7,8 @@
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
-import Foundation
+#if canImport(CoreGraphics)
+import CoreGraphics
 
 extension CGFloat {
     
@@ -86,3 +87,5 @@ public extension CGFloat {
         return self.power(3.0)
     }
 }
+
+#endif
