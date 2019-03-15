@@ -3,7 +3,8 @@
 //  BlackJack
 //
 //  Created by Georges Boumis on 22/11/2017.
-//  Copyright © 2017 AbZorba Games. All rights reserved.
+//  Copyright © 2016-2019 Georges Boumis.
+//  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
 import Foundation

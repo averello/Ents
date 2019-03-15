@@ -3,7 +3,7 @@
 //  Ents
 //
 //  Created by Georges Boumis on 16/01/2017.
-//  Copyright © 2016-2017 Georges Boumis.
+//  Copyright © 2016-2019 Georges Boumis.
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 // source: https://theswiftdev.com/2017/01/05/18-swift-gist-generic-allvalues-for-enums/?utm_campaign=iOS%2BDev%2BWeekly&utm_medium=email&utm_source=iOS_Dev_Weekly_Issue_283

@@ -5,7 +5,7 @@ This application makes use of the following third party libraries:
 
 Ents
 
-Copyright (c) 2016-2017 Georges Boumis <developer.george.boumis@gmail.com>
+Copyright (c) 2016-2019 Georges Boumis <developer.george.boumis@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
