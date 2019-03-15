@@ -3,14 +3,14 @@
 //  Ents
 //
 //  Created by Georges Boumis on 10/08/2016.
-//  Copyright © 2016-2017 Georges Boumis.
+//  Copyright © 2016-2019 Georges Boumis.
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
 import Foundation
 
 public final class Alarm: CustomDebugStringConvertible {
-    final fileprivate let notifyBlock: (() -> Void)!
+    final fileprivate let notifyBlock: ((Alarm) -> Void)!
     final fileprivate var lazyTimer: Lazy<Timer>!
     final let queue: DispatchQueue
     final let interval: TimeInterval
@@ -32,7 +32,7 @@ public final class Alarm: CustomDebugStringConvertible {
                 name: String = "",
                 userInfo: AnyObject? = nil,
                 queue: DispatchQueue = DispatchQueue.main,
-                _ notifyBlock: @escaping () -> Void) {
+                _ notifyBlock: @escaping (Alarm) -> Void) {
         self.notifyBlock = notifyBlock
         self.interval    = interval
         self.repeats     = repeats
@@ -64,7 +64,7 @@ public final class Alarm: CustomDebugStringConvertible {
                              name: String = "",
                              userInfo: AnyObject? = nil,
                              queue: DispatchQueue = DispatchQueue.main,
-                             _ notifyBlock: @escaping () -> Void) {
+                             _ notifyBlock: @escaping (Alarm) -> Void) {
         let interval = date.timeIntervalSinceNow
         guard interval > 0 else { return nil }
         self.init(interval: interval,
@@ -119,7 +119,7 @@ extension Alarm {
             self.state = Alarm.State.idle
             return
         }
-        self.notifyBlock()
+        self.notifyBlock(self)
         if self.repeats == false { self.state = Alarm.State.idle }
     }
 
