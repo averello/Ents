@@ -11,7 +11,7 @@ import Foundation
 #if canImport(CommonCrypto)
 import CommonCrypto
 
-extension Data {
+public extension Data {
     
     var md5Hash: Data? {
         if self.isEmpty {
