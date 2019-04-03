@@ -12,7 +12,7 @@ import Foundation
 public extension SetAlgebra {
     
     /// inverted .contains
-    public func doesNotContain(_ element: Self.Element) -> Bool {
+    func doesNotContain(_ element: Self.Element) -> Bool {
         return doesNot(self.contains(element))
     }
 }

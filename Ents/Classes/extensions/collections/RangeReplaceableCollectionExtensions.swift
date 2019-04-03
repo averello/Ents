@@ -12,13 +12,13 @@ import Foundation
 public extension RangeReplaceableCollection {
     
     /// creates a new collection that was deprived of its last element
-    public func dropingLast(_ n: Int = 1) -> Self  {
+    func dropingLast(_ n: Int = 1) -> Self  {
         guard n > 0 else { return self }
         return Self(self.dropLast(n))
     }
     
     /// creates a new collection that was deprived of its first element
-    public func dropingFirst(_ n: Int = 1) -> Self  {
+    func dropingFirst(_ n: Int = 1) -> Self  {
         guard n > 0 else { return self }
         return Self(self.dropFirst(n))
     }
@@ -27,7 +27,7 @@ public extension RangeReplaceableCollection {
 public extension RangeReplaceableCollection {
     
     /// iterates over the elements before removing all of them from the collection
-    public mutating func removeAll(_ block: (Self.Iterator.Element) throws -> Void) rethrows {
+    mutating func removeAll(_ block: (Self.Iterator.Element) throws -> Void) rethrows {
         try self.forEach { (_,e) in
             try block(e)
         }
@@ -43,7 +43,7 @@ public extension RangeReplaceableCollection {
     ///
     /// - Parameter element: the element to append
     /// - Returns: a new collection populated by the given element at the end
-    public func appending(element: Self.Iterator.Element) -> Self {
+    func appending(element: Self.Iterator.Element) -> Self {
         var mutant = self
         mutant.append(element)
         return mutant
@@ -58,7 +58,7 @@ public extension RangeReplaceableCollection {
     ///
     /// - Parameter elementsOf: the elements to append
     /// - Returns: a new collection populated by the given elements at the end
-    public func appending<S>(elementsOf newElements: S) -> Self where S : Sequence, Self.Element == S.Element {
+    func appending<S>(elementsOf newElements: S) -> Self where S : Sequence, Self.Element == S.Element {
         var mutant = self
         mutant.append(contentsOf: newElements)
         return mutant
@@ -73,7 +73,7 @@ public extension RangeReplaceableCollection {
     ///
     /// - Parameter element: the element to prepend
     /// - Returns: creates a new collection populated by the given element at the start
-    public func prepending(element: Self.Iterator.Element) -> Self {
+    func prepending(element: Self.Iterator.Element) -> Self {
         var mutant = self
         mutant.insert(element, at: mutant.startIndex)
         return mutant
@@ -88,7 +88,7 @@ public extension RangeReplaceableCollection {
     ///
     /// - Parameter elementsOf: the elements to prepend
     /// - Returns: creates a new collection populated by the given elements at the start
-    public func prepending<C>(elementsOf newElements: C) -> Self where C: Collection, Self.Element == C.Element {
+    func prepending<C>(elementsOf newElements: C) -> Self where C: Collection, Self.Element == C.Element {
         var mutant = self
         mutant.insert(contentsOf: newElements, at: mutant.startIndex)
         return mutant
@@ -98,14 +98,14 @@ public extension RangeReplaceableCollection {
     /// - Parameter predicate: the predicate
     /// - Returns: a new collection deprived of the elemnets that satisfy the given predicate
     /// - SeeAlso: sieve(:)
-    public func removing(elementsSatisfying predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self {
+    func removing(elementsSatisfying predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self {
         return try Self(self.sieve(predicate))
     }
     
     /// Remove elements that satisfy the given predicate
     /// - Parameter predicate: the predicate
     /// - SeeAlso: sieve(:)
-    public mutating func remove(elementsSatisfying predicate: (Self.Iterator.Element) throws -> Bool) rethrows {
+    mutating func remove(elementsSatisfying predicate: (Self.Iterator.Element) throws -> Bool) rethrows {
         self = try self.removing(elementsSatisfying: predicate)
     }
 }
@@ -124,13 +124,13 @@ public extension RangeReplaceableCollection
     Self.Index: BinaryInteger,
 Self.SubSequence.Iterator.Element == Self.Iterator.Element {
 
-    public func stableSorted() -> Self {
+    func stableSorted() -> Self {
         var copy = self
         copy.stableSort()
         return copy
     }
 
-    public mutating func stableSort() {
+    mutating func stableSort() {
         var tmp = [Self.Iterator.Element]()
         tmp.reserveCapacity(self.count)
 
@@ -173,13 +173,13 @@ public extension RangeReplaceableCollection
     where Self.Index: BinaryInteger,
 Self.SubSequence.Iterator.Element == Self.Iterator.Element {
 
-    public func stableSorted(_ areInIncreasingOrder: @escaping (Self.Iterator.Element, Self.Iterator.Element) -> Bool) -> Self {
+    func stableSorted(_ areInIncreasingOrder: @escaping (Self.Iterator.Element, Self.Iterator.Element) -> Bool) -> Self {
         var copy = self
         copy.stableSort(areInIncreasingOrder)
         return copy
     }
 
-    public mutating func stableSort(_ areInIncreasingOrder: @escaping (Self.Iterator.Element, Self.Iterator.Element) -> Bool) {
+    mutating func stableSort(_ areInIncreasingOrder: @escaping (Self.Iterator.Element, Self.Iterator.Element) -> Bool) {
         var tmp = [Self.Iterator.Element]()
         tmp.reserveCapacity(self.count)
 

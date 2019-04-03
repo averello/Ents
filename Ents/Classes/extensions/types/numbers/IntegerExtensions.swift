@@ -16,7 +16,7 @@ public extension BinaryInteger {
     ///
     /// - parameter block: the closure to evaluate
     /// - precondition: The instance must by greater than zero.
-    public func times(_ block: (_ i : Self) throws -> ()) rethrows {
+    func times(_ block: (_ i : Self) throws -> ()) rethrows {
         precondition(self >= 0)
         guard self > 0 else { return }
         
@@ -39,7 +39,7 @@ public extension BinaryInteger {
     ///
     /// - parameter block: the closure to evaluate
     /// - precondition: The instance must by greater than zero.
-    public func reversedTimes(_ block: (_ i : Self) throws -> ()) rethrows {
+    func reversedTimes(_ block: (_ i : Self) throws -> ()) rethrows {
         try self.times { index in
             try block((self-1)-index)
         }
@@ -63,7 +63,7 @@ public extension BinaryInteger {
     /// - Returns: The sum of this value and `other`
     ///
     /// - SeeAlso: `add(_:)`
-    public func adding(_ other: Self) -> Self {
+    func adding(_ other: Self) -> Self {
         return self + other
     }
 
@@ -81,7 +81,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to add.
     ///
     /// - SeeAlso: `adding(_:)`
-    public mutating func add(_ other: Self) {
+    mutating func add(_ other: Self) {
         self += other
     }
 }
@@ -103,7 +103,7 @@ public extension BinaryInteger {
     /// - Returns: The difference of this value and `other`.
     ///
     /// - SeeAlso: `subtract(_:)`
-    public func subtracting(_ other: Self) -> Self {
+    func subtracting(_ other: Self) -> Self {
         return self - other
     }
 
@@ -121,7 +121,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to subtract.
     ///
     /// - SeeAlso: `subtracting(_:)`
-    public mutating func subtract(_ other: Self) {
+    mutating func subtract(_ other: Self) {
         self -= other
     }
 
@@ -140,7 +140,7 @@ public extension BinaryInteger {
     /// - Returns: The difference of this value and `other`.
     ///
     /// - SeeAlso: `subtracting(_:)`
-    public func difference(_ other: Self) -> Self {
+    func difference(_ other: Self) -> Self {
         return self.subtracting(other)
     }
 }
@@ -162,7 +162,7 @@ public extension BinaryInteger {
     /// - Returns: The product of this value and `other`.
     ///
     /// - SeeAlso: `multiply(by:)`
-    public func multiplied(by other: Self) -> Self {
+    func multiplied(by other: Self) -> Self {
         return self * other
     }
 
@@ -180,7 +180,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to multiply by this value.
     ///
     /// - SeeAlso: `multiplied(by:)`
-    public mutating func multiply(by other: Self) {
+    mutating func multiply(by other: Self) {
         self *= other
     }
 }
@@ -202,7 +202,7 @@ public extension BinaryInteger {
     /// - Returns: The quotient of this value and `other`.
     ///
     /// - SeeAlso: `divide(by:)`
-    public func divided(by other: Self) -> Self {
+    func divided(by other: Self) -> Self {
         return self / other
     }
 
@@ -220,7 +220,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to use when dividing this value.
     ///
     /// - SeeAlso: `divided(by:)`
-    public mutating func divide(by other: Self) {
+    mutating func divide(by other: Self) {
         self /= other
     }
 }
@@ -263,7 +263,7 @@ public extension BinaryInteger {
     /// - precondition: rhs must be greater than zero.
     /// - SeeAlso: `formRemainder(dividingBy:)`,
     ///   `truncatingRemainder(dividingBy:)`
-    public func remainder(dividingBy rhs: Self) -> Self {
+    func remainder(dividingBy rhs: Self) -> Self {
         return self % rhs
     }
     
@@ -280,7 +280,7 @@ public extension BinaryInteger {
     ///
     /// - precondition: rhs must be greater than zero.
     /// - SeeAlso: `remainder(dividingBy:)`
-    public mutating func formRemainder(dividingBy rhs: Self) {
+    mutating func formRemainder(dividingBy rhs: Self) {
         self = self % rhs
     }
 }
@@ -299,7 +299,7 @@ public extension BinaryInteger {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is less than this value; otherwise, `false`.
-    public func isLessThan(_ other: Self) -> Bool {
+    func isLessThan(_ other: Self) -> Bool {
         return (self < other)
     }
 
@@ -318,7 +318,7 @@ public extension BinaryInteger {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is less than this value; otherwise, `false`.
-    public func isLessThanOrEqualTo(_ other: Self) -> Bool {
+    func isLessThanOrEqualTo(_ other: Self) -> Bool {
         return (self <= other)
     }
 
@@ -338,7 +338,7 @@ public extension BinaryInteger {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is greater than this value; otherwise, `false`.
-    public func isGreaterThan(_ other: Self) -> Bool {
+    func isGreaterThan(_ other: Self) -> Bool {
         return (self > other)
     }
 
@@ -362,7 +362,7 @@ public extension BinaryInteger {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is greater than or equal to this this value; otherwise, `false`.
-    public func isGreaterThanOrEqualTo(_ other: Self) -> Bool {
+    func isGreaterThanOrEqualTo(_ other: Self) -> Bool {
         return (self >= other)
     }
 }
@@ -387,7 +387,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` has the same value as this instance;
     ///   otherwise, `false`.
-    public func isEqual(to other: Self) -> Bool {
+    func isEqual(to other: Self) -> Bool {
         return self == other
     }
 
@@ -396,7 +396,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is a different value from this instance;
     ///   otherwise, `false`.
-    public func isDifferent(from other: Self) -> Bool {
+    func isDifferent(from other: Self) -> Bool {
         return (self.isEqual(to: other) == false)
     }
 }
@@ -421,7 +421,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` has the same value as this instance;
     ///   otherwise, `false`.
-    public func isEqual<F>(to other: F) -> Bool where F: FloatingPoint {
+    func isEqual<F>(to other: F) -> Bool where F: FloatingPoint {
         if Self.isSigned {
             return F(numericCast(self) as Int64).isEqual(to: other)
         }
@@ -433,7 +433,7 @@ public extension BinaryInteger {
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is a different value from this instance;
     ///   otherwise, `false`.
-    public func isDifferent<F>(from other: F) -> Bool where F: FloatingPoint {
+    func isDifferent<F>(from other: F) -> Bool where F: FloatingPoint {
         if Self.isSigned {
             return F(numericCast(self) as Int64).isDifferent(from: other)
         }
@@ -451,7 +451,7 @@ public extension BinaryInteger {
     /// - Parameter other: Another integer value.
     /// - Returns: The minimum of this instance and `other`.
     /// - SeeAlso: `min(:)`
-    public func minimum(_ other: Self) -> Self {
+    func minimum(_ other: Self) -> Self {
         return Swift.min(self, other)
     }
 
@@ -463,7 +463,7 @@ public extension BinaryInteger {
     /// - Parameter other: Another integer value.
     /// - Returns: The greater of this instance and `other`.
     /// - SeeAlso: `max(:)`
-    public func maximum(_ other: Self) -> Self {
+    func maximum(_ other: Self) -> Self {
         return Swift.max(self, other)
     }
 
@@ -475,7 +475,7 @@ public extension BinaryInteger {
     /// - Parameter other: Another integer value.
     /// - Returns: The minimum of this instance and `other`.
     /// - SeeAlso: `minimum(:)`
-    public mutating func min(_ other: Self) {
+    mutating func min(_ other: Self) {
         self = self.minimum(other)
     }
 
@@ -487,7 +487,7 @@ public extension BinaryInteger {
     /// - Parameter other: Another integer value.
     /// - Returns: The greater of this instance and `other`.
     /// - SeeAlso: `maximum(:)`
-    public mutating func max(_ other: Self) {
+    mutating func max(_ other: Self) {
         self = self.maximum(other)
     }
 }
@@ -501,7 +501,7 @@ public extension BinaryInteger {
     ///
     /// - Parameter other: Another integer value.
     /// - Returns: The minimum of this instance and `other`.
-    public func minimum<F>(_ other: F) -> F where F: FloatingPoint {
+    func minimum<F>(_ other: F) -> F where F: FloatingPoint {
         if Self.isSigned {
             return F(numericCast(self) as Int64).minimum(other)
         }
@@ -515,7 +515,7 @@ public extension BinaryInteger {
     ///
     /// - Parameter other: Another integer value.
     /// - Returns: The greater of this instance and `other`.
-    public func maximum<F>(_ other: F) -> F where F: FloatingPoint {
+    func maximum<F>(_ other: F) -> F where F: FloatingPoint {
         if Self.isSigned {
             return F(numericCast(self) as Int64).maximum(other)
         }
@@ -526,7 +526,7 @@ public extension BinaryInteger {
 public extension BinaryInteger where Self: SignedInteger {
     
     /// Returns the absolute value of this instance
-    public func absolute() -> Self {
+    func absolute() -> Self {
         return Swift.abs(self)
     }
 
@@ -540,7 +540,7 @@ public extension BinaryInteger where Self: SignedInteger {
     ///     // x == -21
     ///
     /// - SeeAlso: `negated()`
-    public mutating func negate() {
+    mutating func negate() {
         self = self.negated()
     }
 
@@ -556,7 +556,7 @@ public extension BinaryInteger where Self: SignedInteger {
     /// - Returns: The additive inverse of this value.
     ///
     /// - SeeAlso: `negate()`
-    public func negated() -> Self {
+    func negated() -> Self {
         return -self
     }
 }
@@ -564,14 +564,14 @@ public extension BinaryInteger where Self: SignedInteger {
 public extension BinaryInteger {
     
     /// converts this `Integer` instance to a `NSNumber` instance.
-    public var asNumber: NSNumber {
+    var asNumber: NSNumber {
         return NSNumber(value: numericCast(self) as Int64)
     }
 }
 
 public extension BinaryInteger {
     
-    public init(_ v: Bool) {
+    init(_ v: Bool) {
         if v {
             self.init(1)
         }
@@ -582,7 +582,7 @@ public extension BinaryInteger {
     
     /// Returns a integer value that is raised to the power of `p`.
     /// - parameter p: an integer power.
-    public func power(_ p: Self) -> Self {
+    func power(_ p: Self) -> Self {
         if Self.isSigned {
             let result = Double(numericCast(self) as Int64).power(p)
             return Self(result)
@@ -593,12 +593,12 @@ public extension BinaryInteger {
     }
     
     /// returns the square value of this instance.
-    public var square: Self {
+    var square: Self {
         return self.power(2)
     }
     
     /// returns the cube value of this instance.
-    public var cube: Self {
+    var cube: Self {
         return self.power(3)
     }
 }

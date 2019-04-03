@@ -13,7 +13,7 @@ public extension Collection {
     
     /// Calls the given closure on each element in the sequence in the same
     /// order as a for-in loop and returns the same collection
-    public func perfomingEach(_ body: (Self.Iterator.Element) throws -> Void) rethrows -> Self {
+    func perfomingEach(_ body: (Self.Iterator.Element) throws -> Void) rethrows -> Self {
         try self.forEach(body)
         return self
     }
@@ -68,7 +68,7 @@ public struct LazyPerformingEachCollection<Base: Collection>
 public extension LazyCollectionProtocol {
     
     /// lazily "perform each".
-    public func perfomingEach(_ body: @escaping (Element) -> Void) -> LazyPerformingEachCollection<Self> {
+    func perfomingEach(_ body: @escaping (Element) -> Void) -> LazyPerformingEachCollection<Self> {
         return LazyPerformingEachCollection(base: self, perform: body)
     }
 }

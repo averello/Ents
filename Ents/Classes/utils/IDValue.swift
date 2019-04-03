@@ -18,7 +18,7 @@ public protocol IDValue: Equatable, CustomStringConvertible {
 
 public extension IDValue {
     
-    public var description: String {
+    var description: String {
         return "\(self.rawValue)"
     }
 }
@@ -26,21 +26,21 @@ public extension IDValue {
 
 public extension IDValue {
     
-    public static func ==(lhs: Self, rhs: Self) -> Bool {
+    static func ==(lhs: Self, rhs: Self) -> Bool {
         return (lhs.rawValue == rhs.rawValue)
     }
 }
 
 public extension IDValue where ID: Comparable {
 
-    public static func <(lhs: Self, rhs: Self) -> Bool {
+    static func <(lhs: Self, rhs: Self) -> Bool {
         return (lhs.rawValue < rhs.rawValue)
     }
 }
 
 public extension IDValue where ID: Hashable {
     
-    public var hashValue: Int {
+    var hashValue: Int {
         return self.rawValue.hashValue
     }
 }
@@ -51,15 +51,15 @@ public extension IDValue where ID: ExpressibleByStringLiteral {
     typealias ExtendedGraphemeClusterLiteralType = ID.ExtendedGraphemeClusterLiteralType
     typealias UnicodeScalarLiteralType = ID.UnicodeScalarLiteralType
     
-    public init(stringLiteral value: StringLiteralType) {
+    init(stringLiteral value: StringLiteralType) {
         self.init(ID(stringLiteral: value))
     }
     
-    public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
+    init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
         self.init(ID(extendedGraphemeClusterLiteral: value))
     }
 
-    public init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
+    init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
         self.init(ID(unicodeScalarLiteral: value))
     }
 }
@@ -68,7 +68,7 @@ public extension IDValue where ID: ExpressibleByIntegerLiteral {
     
     typealias IntegerLiteralType = ID.IntegerLiteralType
     
-    public init(integerLiteral value: IntegerLiteralType) {
+    init(integerLiteral value: IntegerLiteralType) {
         self.init(ID(integerLiteral: value))
     }
 }

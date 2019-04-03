@@ -15,7 +15,7 @@ public extension RandomAccessCollection {
     /// the middle element of an odd sized collection.
     /// - Note: only returns an element if the collection has elements and
     /// the count is an odd number
-    public var middle: Self.Iterator.Element? {
+    var middle: Self.Iterator.Element? {
         guard self.hasElements else { return nil }
         
         let odd = (self.count % 2 != 0)
@@ -34,7 +34,7 @@ public extension RandomAccessCollection {
     
     
     /// the lower middle element of an even sized collection.
-    public var lowerMiddle: Self.Iterator.Element? {
+    var lowerMiddle: Self.Iterator.Element? {
         guard self.hasElements else { return nil }
         guard self.count % 2 == 0 else { return nil }
         
@@ -45,7 +45,7 @@ public extension RandomAccessCollection {
     }
     
     /// the upper middle element of an even sized collection.
-    public var upperMiddle: Self.Iterator.Element? {
+    var upperMiddle: Self.Iterator.Element? {
         guard self.hasElements else { return nil }
         guard self.count % 2 == 0 else { return nil }
         
@@ -79,13 +79,13 @@ public extension RandomAccessCollection {
 public extension RandomAccessCollection {
     
     /// a "safe" accesor of elements in a `RandomAccessColelction` instance.
-    public func element(atIndex i: Self.Index) -> Self.Iterator.Element? {
+    func element(atIndex i: Self.Index) -> Self.Iterator.Element? {
         guard i < self.endIndex && i >= self.startIndex else { return nil }
         return self[i]
     }
     
     /// returns a random element of the collection.
-    public var randomElement: Self.Iterator.Element? {
+    var randomElement: Self.Iterator.Element? {
         guard self.hasElements else { return nil }
         guard self.count > 1 else { return self[self.startIndex] } // optimization
         

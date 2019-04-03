@@ -17,11 +17,12 @@ public extension Data {
         if self.isEmpty {
             return nil
         }
-        return self.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> Data in
+        return self.withUnsafeBytes { (pointer: UnsafeRawBufferPointer) -> Data? in
+            guard let base = pointer.baseAddress else { return nil }
             let length = CC_MD5_DIGEST_LENGTH
             var result = [UInt8](repeating: 0, count: Int(length))
-            CC_MD5(pointer, CC_LONG(length), &result)
-            return Data(bytes: result)
+            CC_MD5(base, CC_LONG(length), &result)
+            return Data(result)
         }
     }
     

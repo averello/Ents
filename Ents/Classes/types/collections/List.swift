@@ -57,7 +57,7 @@ extension List {
 
 public extension List {
     
-    public func cons(_ element: Element) -> List<Element> {
+    func cons(_ element: Element) -> List<Element> {
         
         let startIndex = self.startIndex
         let newStartIndex = ListIndex(node: startIndex.node.cons(element),
@@ -65,11 +65,11 @@ public extension List {
         return List(startIndex: newStartIndex, endIndex: self.endIndex)
     }
     
-    public func car() -> Element? {
+    func car() -> Element? {
         return self.startIndex.node.car()
     }
     
-    public func cdr() -> List<Element> {
+    func cdr() -> List<Element> {
         let newStartIndex = ListIndex(node: self.startIndex.node.cdr(), tag: self.startIndex.tag-1)
         return List(startIndex: newStartIndex, endIndex: self.endIndex)
     }

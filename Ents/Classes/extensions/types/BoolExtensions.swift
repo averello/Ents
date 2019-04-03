@@ -49,7 +49,7 @@ public extension Bool {
     
     /// Creating Bool from Integers.
     /// - parameter i: the integer. `0` means `false`. Any other value means `true`
-    public init(_ i: Int) {
+    init(_ i: Int) {
         if i == 0 {
             self = false
         }
@@ -60,7 +60,7 @@ public extension Bool {
 
     /// Creating Bool from Integers.
     /// - parameter i: the integer. `0` means `false`. Any other value means `true`
-    public init<I>(_ i: I) where I: BinaryInteger {
+    init<I>(_ i: I) where I: BinaryInteger {
         self.init(numericCast(i) as Int)
     }
 }
@@ -73,7 +73,7 @@ public extension Bool {
     ///
     /// - parameter other: another boolean to do an `&&`
     /// - returns: the result of AND-ing self and other
-    public func and(_ other: @autoclosure () -> Bool) -> Bool {
+    func and(_ other: @autoclosure () -> Bool) -> Bool {
         guard self else { return false }
         return other()
     }
@@ -84,7 +84,7 @@ public extension Bool {
     ///
     /// - parameter other: another boolean to do an `||`
     /// - returns: the result of OR-ing self and other
-    public func or(_ other: @autoclosure () -> Bool) -> Bool {
+    func or(_ other: @autoclosure () -> Bool) -> Bool {
         return self || other()
     }
 
@@ -94,7 +94,7 @@ public extension Bool {
     ///
     /// - parameter other: another boolean to do a differnet than `!=` comparison.
     /// - returns: `true` if the booleans are different, otherwise `false`.
-    public func different(than other: Bool) -> Bool {
+    func different(than other: Bool) -> Bool {
         return self != other
     }
 
@@ -103,7 +103,7 @@ public extension Bool {
     ///     true.not // false
     ///
     /// - returns: the NOT-ed boolean as in '!'.
-    public var not: Bool {
+    var not: Bool {
         return !self
     }
 }
@@ -115,7 +115,7 @@ public extension Bool {
     ///     true.negated // false
     ///
     /// - returns: the NOT-ed boolean as in '!'.
-    public var negated: Bool {
+    var negated: Bool {
         return self.not
     }
 
@@ -125,7 +125,7 @@ public extension Bool {
     ///     b.negate()
     ///     b // false
     ///
-    public mutating func negate() {
+    mutating func negate() {
         self = self.not
     }
 }
@@ -138,7 +138,7 @@ public extension Bool {
     ///     b.orWith(true)
     ///     b // true
     ///
-    public mutating func orWith(_ other: Bool) {
+    mutating func orWith(_ other: Bool) {
         self = self.or(other)
     }
     
@@ -148,7 +148,7 @@ public extension Bool {
     ///     b.andWith(true)
     ///     b // false
     ///
-    public mutating func andWith(_ other: Bool) {
+    mutating func andWith(_ other: Bool) {
         self = self.and(other)
     }
 }
@@ -161,7 +161,7 @@ public extension Bool {
     ///     var b = true
     ///     b.ifTrue { // do work }
     ///
-    public func ifTrue(_ block: () -> Void) {
+    func ifTrue(_ block: () -> Void) {
         if self {
             block()
         }
@@ -173,7 +173,7 @@ public extension Bool {
     ///     var condition = true
     ///     condition.isTrue { // do work }
     ///
-    public func isTrue(_ block: () -> Void) {
+    func isTrue(_ block: () -> Void) {
         self.ifTrue(block)
     }
 
@@ -187,7 +187,7 @@ public extension Bool {
     ///         // false
     ///     })
     ///
-    public func ifTrue(_ iblock: () -> Void, else eblock: () -> Void) {
+    func ifTrue(_ iblock: () -> Void, else eblock: () -> Void) {
         if self {
             iblock()
         } else {
@@ -200,7 +200,7 @@ public extension Bool {
     ///     var condition = true
     ///     condition.ifFalse { // do work }
     ///
-    public func ifFalse(_ block: () -> Void) {
+    func ifFalse(_ block: () -> Void) {
         if self.not {
             block()
         }
@@ -211,7 +211,7 @@ public extension Bool {
     ///     var condition = true
     ///     condition.isFalse { // do work }
     ///
-    public func isFalse(_ block: () -> Void) {
+    func isFalse(_ block: () -> Void) {
         self.ifFalse(block)
     }
 
@@ -225,7 +225,7 @@ public extension Bool {
     ///         // false
     ///     })
     ///
-    public func ifFalse(_ iblock: () -> Void, else eblock: () -> Void) {
+    func ifFalse(_ iblock: () -> Void, else eblock: () -> Void) {
         if self.not {
             iblock()
         }
@@ -252,7 +252,7 @@ public extension Bool {
     ///     res // nil
     ///
     @discardableResult
-    public func map<U>(_ transform: () throws -> U) rethrows -> U? {
+    func map<U>(_ transform: () throws -> U) rethrows -> U? {
         if self {
             return try transform()
         }

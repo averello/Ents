@@ -12,12 +12,12 @@ import Foundation
 public extension FloatingPoint {
 
     /// the floored value
-	public var floored: Self {
+    var floored: Self {
 		return self.rounded(FloatingPointRoundingRule.down)
 	}
 
     /// the ceiled value
-	public var ceiled: Self {
+    var ceiled: Self {
 		return self.rounded(FloatingPointRoundingRule.up)
 	}
 }
@@ -25,7 +25,7 @@ public extension FloatingPoint {
 public extension FloatingPoint {
     
     /// the absolute value of this instance
-	public func absolute() -> Self {
+    func absolute() -> Self {
         return abs(self)
 	}
 }
@@ -33,19 +33,19 @@ public extension FloatingPoint {
 public extension FloatingPoint {
     
     /// the half of this value
-    public var half: Self {
+    var half: Self {
         return self / Self(2)
     }
     /// the double of this value
-    public var doubled: Self {
+    var doubled: Self {
         return self * Self(2)
     }
     /// the triple of this value
-    public var tripled: Self {
+    var tripled: Self {
         return self * Self(3)
     }
     /// a quarter of this value
-    public var quarter: Self {
+    var quarter: Self {
         return self / Self(4)
     }
 }
@@ -74,7 +74,7 @@ public extension FloatingPoint {
     ///   representable value.
     ///
     /// - SeeAlso: `multiply(by:)`
-    public func multiplied(by other: Self) -> Self {
+    func multiplied(by other: Self) -> Self {
         return self * other
     }
     
@@ -93,7 +93,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to multiply by this value.
     ///
     /// - SeeAlso: `multiplied(by:)`
-    public mutating func multiply(by other: Self) {
+    mutating func multiply(by other: Self) {
         self *= other
     }
     
@@ -119,7 +119,7 @@ public extension FloatingPoint {
     ///   representable value.
     ///
     /// - SeeAlso: `multiply(by:)`
-    public func multiplied<I>(by other: I) -> Self where I: BinaryInteger {
+    func multiplied<I>(by other: I) -> Self where I: BinaryInteger {
         if I.isSigned {
             return self * Self(numericCast(other) as Int64)
         }
@@ -141,7 +141,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to multiply by this value.
     ///
     /// - SeeAlso: `multiplied(by:)`
-    public mutating func multiply<I>(by other: I) where I: BinaryInteger {
+    mutating func multiply<I>(by other: I) where I: BinaryInteger {
         if I.isSigned {
             self *= Self(numericCast(other) as Int64)
         }
@@ -175,7 +175,7 @@ public extension FloatingPoint {
     ///   representable value.
     ///
     /// - SeeAlso: `divide(by:)`
-    public func divided(by other: Self) -> Self {
+    func divided(by other: Self) -> Self {
         return self / other
     }
     
@@ -194,7 +194,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to use when dividing this value.
     ///
     /// - SeeAlso: `divided(by:)`
-    public mutating func divide(by other: Self) {
+    mutating func divide(by other: Self) {
         self /= other
     }
     
@@ -220,7 +220,7 @@ public extension FloatingPoint {
     ///   representable value.
     ///
     /// - SeeAlso: `divide(by:)`
-    public func divided<I>(by other: I) -> Self where I: BinaryInteger {
+    func divided<I>(by other: I) -> Self where I: BinaryInteger {
         if I.isSigned {
             return self / Self(numericCast(other) as Int64)
         }
@@ -242,7 +242,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to use when dividing this value.
     ///
     /// - SeeAlso: `divided(by:)`
-    public mutating func divide<I>(by other: I) where I: BinaryInteger {
+    mutating func divide<I>(by other: I) where I: BinaryInteger {
         if I.isSigned {
             self /= Self(numericCast(other) as Int64)
         }
@@ -276,7 +276,7 @@ public extension FloatingPoint {
     ///   representable value.
     ///
     /// - SeeAlso: `subtract(_:)`
-    public func subtracting(_ other: Self) -> Self {
+    func subtracting(_ other: Self) -> Self {
         return self - other
     }
     
@@ -295,7 +295,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to subtract.
     ///
     /// - SeeAlso: `subtracting(_:)`
-    public mutating func subtract(_ other: Self) {
+    mutating func subtract(_ other: Self) {
         self -= other
     }
 
@@ -322,7 +322,7 @@ public extension FloatingPoint {
     ///   representable value.
     ///
     /// - SeeAlso: `subtract(_:)`
-    public func subtracting<I>(by other: I) -> Self where I: BinaryInteger {
+    func subtracting<I>(by other: I) -> Self where I: BinaryInteger {
         if I.isSigned {
             return self - Self(numericCast(other) as Int64)
         }
@@ -344,7 +344,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to subtract.
     ///
     /// - SeeAlso: `subtracting(_:)`
-    public mutating func subtract<I>(by other: I) where I: BinaryInteger {
+    mutating func subtract<I>(by other: I) where I: BinaryInteger {
         if I.isSigned {
             self -= Self(numericCast(other) as Int64)
         }
@@ -378,7 +378,7 @@ public extension FloatingPoint {
     ///   value.
     ///
     /// - SeeAlso: `add(_:)`
-    public func adding(_ other: Self) -> Self {
+    func adding(_ other: Self) -> Self {
         return self + other
     }
     
@@ -397,7 +397,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to add.
     ///
     /// - SeeAlso: `adding(_:)`
-    public mutating func add(_ other: Self) {
+    mutating func add(_ other: Self) {
         self += other
     }
 
@@ -424,7 +424,7 @@ public extension FloatingPoint {
     ///   value.
     ///
     /// - SeeAlso: `add(_:)`
-    public func adding<I>(by other: I) -> Self where I: BinaryInteger {
+    func adding<I>(by other: I) -> Self where I: BinaryInteger {
         if I.isSigned {
             return self + Self(numericCast(other) as Int64)
         }
@@ -446,7 +446,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to add.
     ///
     /// - SeeAlso: `adding(_:)`
-    public mutating func add<I>(by other: I) where I: BinaryInteger {
+    mutating func add<I>(by other: I) where I: BinaryInteger {
         if I.isSigned {
             self += Self(numericCast(other) as Int64)
         }
@@ -499,7 +499,7 @@ public extension FloatingPoint {
     ///
     /// - SeeAlso: `formRemainder(dividingBy:)`,
     ///   `truncatingRemainder(dividingBy:)`
-    public func remainder<I>(dividingBy rhs: I) -> Self where I:BinaryInteger {
+    func remainder<I>(dividingBy rhs: I) -> Self where I:BinaryInteger {
         if I.isSigned {
             return self.remainder(dividingBy: Self(numericCast(rhs) as Int64))
         }
@@ -515,7 +515,7 @@ public extension FloatingPoint {
     ///
     /// - SeeAlso: `formTruncatingRemainder(dividingBy:)`,
     ///   `remainder(dividingBy:)`
-    public func truncatingRemainder<I>(dividingBy other: I) -> Self where I:BinaryInteger {
+    func truncatingRemainder<I>(dividingBy other: I) -> Self where I:BinaryInteger {
         if I.isSigned {
             return self.truncatingRemainder(dividingBy: Self(numericCast(other) as Int64))
         }
@@ -529,7 +529,7 @@ public extension FloatingPoint {
     ///
     /// - SeeAlso: `remainder(dividingBy:)`,
     ///   `formTruncatingRemainder(dividingBy:)`
-    public mutating func formRemainder<I>(dividingBy rhs: I) where I:BinaryInteger {
+    mutating func formRemainder<I>(dividingBy rhs: I) where I:BinaryInteger {
         if I.isSigned {
             self.formRemainder(dividingBy: Self(numericCast(rhs) as Int64))
         }
@@ -545,7 +545,7 @@ public extension FloatingPoint {
     ///
     /// - SeeAlso: `truncatingRemainder(dividingBy:)`,
     ///   `formRemainder(dividingBy:)`
-    public mutating func formTruncatingRemainder<I>(dividingBy other: I) where I:BinaryInteger {
+    mutating func formTruncatingRemainder<I>(dividingBy other: I) where I:BinaryInteger {
         if I.isSigned {
             self.formTruncatingRemainder(dividingBy: Self(numericCast(other) as Int64))
         }
@@ -585,7 +585,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is less than this value; otherwise, `false`.
-    public func isLessThan(_ other: Self) -> Bool {
+    func isLessThan(_ other: Self) -> Bool {
         return self.isLess(than: other)
     }
 
@@ -613,7 +613,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is less than this value; otherwise, `false`.
-    public func isLessThan<I>(_ other: I) -> Bool where I: BinaryInteger {
+    func isLessThan<I>(_ other: I) -> Bool where I: BinaryInteger {
         if I.isSigned {
             return self.isLessThan(Self(numericCast(other) as Int64))
         }
@@ -628,7 +628,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is less than or equal to this this value; otherwise, `false`.
-    public func isLessThanOrEqualTo(_ other: Self) -> Bool {
+    func isLessThanOrEqualTo(_ other: Self) -> Bool {
         return self <= other
     }
     
@@ -640,7 +640,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is less than or equal to this this value; otherwise, `false`.
-    public func isLessThanOrEqualTo<I>(_ other: I) -> Bool where I: BinaryInteger {
+    func isLessThanOrEqualTo<I>(_ other: I) -> Bool where I: BinaryInteger {
         if I.isSigned {
             return self.isLessThanOrEqualTo(Self(numericCast(other) as Int64))
         }
@@ -658,7 +658,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is greater than this value; otherwise, `false`.
-    public func isGreaterThan(_ other: Self) -> Bool {
+    func isGreaterThan(_ other: Self) -> Bool {
         return self > other
     }
 
@@ -670,7 +670,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is greater than this value; otherwise, `false`.
-    public func isGreaterThan<I>(_ other: I) -> Bool where I: BinaryInteger {
+    func isGreaterThan<I>(_ other: I) -> Bool where I: BinaryInteger {
         if I.isSigned {
             return self.isGreaterThan(Self(numericCast(other) as Int64))
         }
@@ -685,7 +685,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is greater than or equal to this this value; otherwise, `false`.
-    public func isGreaterThanOrEqualTo(_ other: Self) -> Bool {
+    func isGreaterThanOrEqualTo(_ other: Self) -> Bool {
         return self >= other
     }
 
@@ -697,7 +697,7 @@ public extension FloatingPoint {
     ///
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is greater than or equal to this this value; otherwise, `false`.
-    public func isGreaterThanOrEqualTo<I>(_ other: I) -> Bool where I: BinaryInteger {
+    func isGreaterThanOrEqualTo<I>(_ other: I) -> Bool where I: BinaryInteger {
         if I.isSigned {
             return self.isGreaterThanOrEqualTo(Self(numericCast(other) as Int64))
         }
@@ -726,7 +726,7 @@ public extension FloatingPoint {
     /// - Parameter other: Another floating-point value.
     /// - Returns: The minimum of this instance and `other` , or whichever is a number if the
     ///   other is NaN.
-	public func minimum(_ other: Self) -> Self {
+    func minimum(_ other: Self) -> Self {
 		return Self.minimum(self, other)
 	}
 
@@ -747,7 +747,7 @@ public extension FloatingPoint {
     /// - Parameter other: Another integer value.
     /// - Returns: The minimum of this instance and `other`, or whichever is a number if the
     ///   other is NaN.
-    public func minimum<I>(_ other: I) -> Self where I: BinaryInteger {
+    func minimum<I>(_ other: I) -> Self where I: BinaryInteger {
         if I.isSigned {
             return Self.minimum(self, Self(numericCast(other) as Int64))
         }
@@ -776,7 +776,7 @@ public extension FloatingPoint {
     /// - Parameter other: Another floating-point value.
     /// - Returns: The greater of this instance and `other`, or whichever is a number if the
     ///   other is NaN.
-    public func maximum(_ other: Self) -> Self {
+    func maximum(_ other: Self) -> Self {
         return Self.maximum(self, other)
     }
 
@@ -795,7 +795,7 @@ public extension FloatingPoint {
     /// - Parameter other: Another floating-point value.
     /// - Returns: The greater of this instance and `other` , or whichever is a number if the
     ///   other is NaN.
-    public func maximum<I>(_ other: I) -> Self where I: BinaryInteger {
+    func maximum<I>(_ other: I) -> Self where I: BinaryInteger {
         if I.isSigned {
             return Self.maximum(self, Self(numericCast(other) as Int64))
         }
@@ -810,7 +810,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is a different value from this instance;
     ///   otherwise, `false`.
-	public func isDifferent(from other: Self) -> Bool {
+    func isDifferent(from other: Self) -> Bool {
         if self.isNaN && other.isNaN { return false }
 		return not(self.isEqual(to: other))
 	}
@@ -820,7 +820,7 @@ public extension FloatingPoint {
     /// - Parameter other: The value to compare with this value.
     /// - Returns: `true` if `other` is a different value from this instance;
     ///   otherwise, `false`.
-    public func isDifferent<I>(from other: I) -> Bool where I: BinaryInteger {
+    func isDifferent<I>(from other: I) -> Bool where I: BinaryInteger {
         if self.isNaN { return true }
         return self.isDifferent(from: Self(Int64(other)))
     }
@@ -830,13 +830,13 @@ public extension FloatingPoint {
     
     /// if the instance value is considered to represent degrees then this 
     /// property returns the a converted value that represents radians.
-	public var radians: Self {
+    var radians: Self {
         return (self / 180) * Self.pi
 	}
 
     /// if the instance value is considered to represent radians then this 
     /// property returns the a converted value that represents degrees.
-	public var degrees: Self {
+    var degrees: Self {
         return (self * 180) / Self.pi
 	}
 }

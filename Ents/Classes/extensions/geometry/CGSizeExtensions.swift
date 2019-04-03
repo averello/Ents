@@ -33,7 +33,7 @@ public func | (lhs: Float, rhs: Float) -> CGSize {
 public extension CGSize {
     
     /// returns a new CGSize with floored `width` and `height` of the receiver
-    public var floored: CGSize {
+    var floored: CGSize {
 		var size = self
 		size.width  = self.width.floored
 		size.height = self.height.floored
@@ -42,12 +42,12 @@ public extension CGSize {
 
 
     /// floors `width` and `height`
-    public mutating func floor() {
+    mutating func floor() {
 		self = self.floored
     }
 
     /// returns a new CGSize with ceiled `width` and `height` of the receiver
-    public var ceiled: CGSize {
+    var ceiled: CGSize {
 		var size = self
 		size.width  = self.width.ceiled
 		size.height = self.height.ceiled
@@ -55,7 +55,7 @@ public extension CGSize {
     }
 
     /// ceils `width` and `height`
-    public mutating func ceil() {
+    mutating func ceil() {
         self = self.ceiled
     }
 }
@@ -63,13 +63,13 @@ public extension CGSize {
 public extension CGSize {
     
     /// returns a CGSize double is size
-    public var doubled: CGSize {
+    var doubled: CGSize {
         return CGSize(width: self.width.doubled,
                       height: self.height.doubled)
     }
     
     /// returns half a CGSize
-    public var halfed: CGSize {
+    var halfed: CGSize {
         return CGSize(width: self.width.half,
                       height: self.height.half)
     }
@@ -79,7 +79,7 @@ public extension CGSize {
     
     /// creates a CGSize which is scaled by the given factor.
     /// - parameter scale: the factor to scale with.
-    public func scaled(_ scale: CGFloat) -> CGSize {
+    func scaled(_ scale: CGFloat) -> CGSize {
         var size = self
         size.scale(scale)
         return size
@@ -88,7 +88,7 @@ public extension CGSize {
     /// creates a CGSize which is scaled by the given factors.
     /// - parameter dx: the factor to scale `width`.
     /// - parameter dy: the factor to scale `height`.
-    public func scaled(_ dx: CGFloat, dy: CGFloat) -> CGSize {
+    func scaled(_ dx: CGFloat, dy: CGFloat) -> CGSize {
         var size = self
         size.scale(dx, dy: dy)
         return size
@@ -97,7 +97,7 @@ public extension CGSize {
     /// creates a CGSize which is scaled by the given factors.
     /// - parameter wS: the factor to scale `width`.
     /// - parameter hS: the factor to scale `height`
-    public func scaled(widthScale wS: CGFloat, heightScale hS: CGFloat) -> CGSize {
+    func scaled(widthScale wS: CGFloat, heightScale hS: CGFloat) -> CGSize {
         var size = self
         size.scale(widthScale: wS, heightScale: hS)
         return size
@@ -105,14 +105,14 @@ public extension CGSize {
 
     /// scales the receiver with the given factor.
     /// - parameter scale: the factor to scale with.
-    public mutating func scale(_ scale: CGFloat) {
+    mutating func scale(_ scale: CGFloat) {
         self.scale(widthScale: scale, heightScale: scale)
     }
 
     /// scales the receiver with the given factors.
     /// - parameter wS: the factor to scale `width`.
     /// - parameter hS: the factor to scale `height`
-    public mutating func scale(widthScale wS: CGFloat, heightScale hS: CGFloat) {
+    mutating func scale(widthScale wS: CGFloat, heightScale hS: CGFloat) {
         self.width *= wS
         self.height *= hS
     }
@@ -120,7 +120,7 @@ public extension CGSize {
     /// scales the receiver with the given factors.
     /// - parameter dx: the factor to scale `width`.
     /// - parameter dy: the factor to scale `height`.
-    public mutating func scale(_ dx: CGFloat, dy: CGFloat) {
+    mutating func scale(_ dx: CGFloat, dy: CGFloat) {
         self.width *= dx
         self.height *= dy
     }
@@ -129,7 +129,7 @@ public extension CGSize {
 public extension CGSize {
     
     /// converts this `CGSize` instance to a `NSValue` instance.
-    public var asValue: NSValue {
+    var asValue: NSValue {
         return NSValue(cgSize: self)
     }
 }
@@ -138,7 +138,7 @@ public extension CGSize {
     
     /// creates a CGSize with the given `width` and the same `height` as the receiver
     /// - parameter width: the new `width`
-    public func with(width: CGFloat) -> CGSize {
+    func with(width: CGFloat) -> CGSize {
         var size = self
         size.width = width
         return size
@@ -146,7 +146,7 @@ public extension CGSize {
 
     /// creates a CGSize with the given `height` and the same `width` as the receiver
     /// - parameter height: the new `height`
-    public func with(height: CGFloat) -> CGSize {
+    func with(height: CGFloat) -> CGSize {
         var size = self
         size.height = height
         return size
@@ -158,7 +158,7 @@ public extension CGSize {
     /// creates a CGSize whose `width` is the sum of the current `width` and the 
     /// given value.
     /// - parameter width: the value to add to the current `width`.
-    public func adding(width: CGFloat) -> CGSize {
+    func adding(width: CGFloat) -> CGSize {
         var size = self
         size.width += width
         return size
@@ -167,7 +167,7 @@ public extension CGSize {
     /// creates a CGSize whose `height` is the sum of the current `height` and 
     /// the given value.
     /// - parameter height: the value to add to the current `height`.
-    public func adding(height: CGFloat) -> CGSize {
+    func adding(height: CGFloat) -> CGSize {
         var size = self
         size.height += height
         return size
@@ -176,7 +176,7 @@ public extension CGSize {
     /// creates a CGSize whose `width` is the difference of the current `width`
     /// and the given value.
     /// - parameter width: the value to subtract from the current `width`.
-    public func subtracting(width: CGFloat) -> CGSize {
+    func subtracting(width: CGFloat) -> CGSize {
         var size = self
         size.width -= width
         return size
@@ -185,7 +185,7 @@ public extension CGSize {
     /// creates a CGSize whose `height` is the difference of the current 
     /// `height` and the given value.
     /// - parameter width: the value to subtract from the current `height`.
-    public func subtracting(height: CGFloat) -> CGSize {
+    func subtracting(height: CGFloat) -> CGSize {
         var size = self
         size.height -= height
         return size
@@ -196,7 +196,7 @@ public extension CGSize {
     
     /// sums two CGSize instances
     /// - parameter size: another size
-    public func adding(size: CGSize) -> CGSize {
+    func adding(size: CGSize) -> CGSize {
         return self
             .adding(width: size.width)
             .adding(height: size.height)
@@ -204,7 +204,7 @@ public extension CGSize {
     
     /// subtracts two CGSize instances
     /// - parameter size: another size
-    public func subtracting(size: CGSize) -> CGSize {
+    func subtracting(size: CGSize) -> CGSize {
         return self
             .subtracting(width: size.width)
             .subtracting(height: size.height)
@@ -215,7 +215,7 @@ public extension CGSize {
     
     /// apply a transformation to a CGSize
     /// - parameter t: the transformation
-    public mutating func apply(_ t: CGAffineTransform) {
+    mutating func apply(_ t: CGAffineTransform) {
         self = self.applying(t)
     }
 }
@@ -225,7 +225,7 @@ public extension CGSize {
     /// creates a CGSize with has the greatest properties between the receiver 
     /// and the given value
     /// - parameter other: another size
-    public func union(with other: CGSize) -> CGSize {
+    func union(with other: CGSize) -> CGSize {
         return self
             .with(width: self.width.maximum(other.width))
             .with(height: self.height.maximum(other.height))
@@ -235,7 +235,7 @@ public extension CGSize {
     /// and the given value.
     /// - parameter other: another size
     /// - seeAlso: union(with:)
-    public mutating func merge(with other: CGSize) {
+    mutating func merge(with other: CGSize) {
         self = self.union(with: other)
     }
 }
@@ -243,7 +243,7 @@ public extension CGSize {
 public extension CGSize {
     
     /// calculates the area of this instance
-    public var area: CGFloat {
+    var area: CGFloat {
         return (self.width * self.height).absolute()
     }
 }
@@ -251,7 +251,7 @@ public extension CGSize {
 public extension CGSize {
     
     /// the rule to use for maximum/minimum/area comparisons.
-    public enum ComparisonRule {
+    enum ComparisonRule {
         case width  /// do comparison based on `width`.
         case height /// do comparison based on `height`.
         case area   /// do comparison based on `area`.
@@ -261,7 +261,7 @@ public extension CGSize {
     /// given rule for comparison
     /// - parameter other: another size
     /// - parameter rule: the comparison rule to use.
-    public func maximum(_ other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> CGSize {
+    func maximum(_ other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> CGSize {
         switch rule {
         case CGSize.ComparisonRule.width:
             return (self.width > other.width) ? self : other
@@ -276,7 +276,7 @@ public extension CGSize {
     /// given rule for comparison
     /// - parameter other: another size
     /// - parameter rule: the comparison rule to use.
-    public func minimum(_ other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> CGSize {
+    func minimum(_ other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> CGSize {
         switch rule {
         case CGSize.ComparisonRule.width:
             return (self.width < other.width) ? self : other
@@ -294,7 +294,7 @@ public extension CGSize {
     /// given value based on the given comparison rule.
     /// - parameter other: another size
     /// - parameter rule: the comparison rule to use.
-    public func isGreater(than other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
+    func isGreater(than other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
         switch rule {
         case CGSize.ComparisonRule.width:
             return (self.width > other.width)
@@ -309,7 +309,7 @@ public extension CGSize {
     /// equal to the given value based on the given comparison rule.
     /// - parameter other: another size
     /// - parameter rule: the comparison rule to use.
-    public func isGreater(thanOrEqualTo other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
+    func isGreater(thanOrEqualTo other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
         switch rule {
         case CGSize.ComparisonRule.width:
             return (self.width >= other.width)
@@ -324,7 +324,7 @@ public extension CGSize {
     /// given value based on the given comparison rule.
     /// - parameter other: another size
     /// - parameter rule: the comparison rule to use.
-    public func isLess(than other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
+    func isLess(than other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
         switch rule {
         case CGSize.ComparisonRule.width:
             return (self.width < other.width)
@@ -339,7 +339,7 @@ public extension CGSize {
     /// to the given value based on the given comparison rule.
     /// - parameter other: another size
     /// - parameter rule: the comparison rule to use.
-    public func isLess(thanOrEqualTo other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
+    func isLess(thanOrEqualTo other: CGSize, rule: CGSize.ComparisonRule = CGSize.ComparisonRule.area) -> Bool {
         switch rule {
         case CGSize.ComparisonRule.width:
             return (self.width <= other.width)

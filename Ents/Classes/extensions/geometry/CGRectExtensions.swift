@@ -21,12 +21,12 @@ public func ◊ (lhs: CGPoint, rhs: CGSize) -> CGRect {
 public extension CGRect {
     
     /// creates a CGRect with the specified center and size components
-    public init(center: CGPoint, width: CGFloat, height: CGFloat) {
+    init(center: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(center: center, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified center and size
-    public init(center: CGPoint, size : CGSize) {
+    init(center: CGPoint, size : CGSize) {
         let x = center.x - (size.width * 0.5)
         let y = center.y - (size.height * 0.5)
         let origin = CGPoint(x: x, y: y)
@@ -38,12 +38,12 @@ public extension CGRect {
     //
 
     /// creates a CGRect with the specified rightCenter point and size components
-    public init(rightCenter: CGPoint, width: CGFloat, height: CGFloat) {
+    init(rightCenter: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(rightCenter: rightCenter, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified rightCenter point and size
-    public init(rightCenter: CGPoint, size: CGSize) {
+    init(rightCenter: CGPoint, size: CGSize) {
         let x = rightCenter.x - size.width
         let y = rightCenter.y - (size.height * 0.5)
         let origin = CGPoint(x: x, y: y)
@@ -51,12 +51,12 @@ public extension CGRect {
     }
 
     /// creates a CGRect with the specified leftCenter point and size components
-    public init(leftCenter: CGPoint, width: CGFloat, height: CGFloat) {
+    init(leftCenter: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(leftCenter: leftCenter, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified leftCenter point and size
-    public init(leftCenter : CGPoint, size : CGSize) {
+    init(leftCenter : CGPoint, size : CGSize) {
         let x = leftCenter.x
         let y = leftCenter.y - (size.height * 0.5)
         let origin = CGPoint(x: x, y: y);
@@ -64,12 +64,12 @@ public extension CGRect {
     }
 
     /// creates a CGRect with the specified topCenter point and size components
-    public init(topCenter: CGPoint, width: CGFloat, height: CGFloat) {
+    init(topCenter: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(topCenter: topCenter, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified topCenter point and size
-    public init(topCenter: CGPoint, size: CGSize) {
+    init(topCenter: CGPoint, size: CGSize) {
         let x = topCenter.x - (size.width * 0.5)
         let y = topCenter.y
         let origin = CGPoint(x: x, y: y)
@@ -77,12 +77,12 @@ public extension CGRect {
     }
 
     /// creates a CGRect with the specified bottomCenter point and size components
-    public init(bottomCenter: CGPoint, width: CGFloat, height: CGFloat) {
+    init(bottomCenter: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(bottomCenter: bottomCenter, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified bottomCenter point and size
-    public init(bottomCenter : CGPoint, size : CGSize) {
+    init(bottomCenter : CGPoint, size : CGSize) {
         let x = bottomCenter.x - (size.width * 0.5)
         let y = bottomCenter.y - size.height
         let origin = CGPoint(x: x, y: y)
@@ -93,12 +93,12 @@ public extension CGRect {
     // using corners
     
     /// creates a CGRect with the specified topRight point and size components
-    public init(topRight: CGPoint, width: CGFloat, height: CGFloat) {
+    init(topRight: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(topRight: topRight, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified topRight point and size
-    public init(topRight: CGPoint, size: CGSize) {
+    init(topRight: CGPoint, size: CGSize) {
         let x = topRight.x - size.width
         let y = topRight.y
         let origin = CGPoint(x: x, y: y)
@@ -106,22 +106,22 @@ public extension CGRect {
     }
     
     /// creates a CGRect with the specified topLeft point and size components
-    public init(topLeft: CGPoint, width: CGFloat, height: CGFloat) {
+    init(topLeft: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(topLeft: topLeft, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified topLeft point and size
-    public init(topLeft: CGPoint, size: CGSize) {
+    init(topLeft: CGPoint, size: CGSize) {
         self.init(origin: topLeft, size: size)
     }
 
     /// creates a CGRect with the specified bottomLeft point and size components
-    public init(bottomLeft: CGPoint, width: CGFloat, height: CGFloat) {
+    init(bottomLeft: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(bottomLeft: bottomLeft, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified bottomLeft point and size
-    public init(bottomLeft: CGPoint, size: CGSize) {
+    init(bottomLeft: CGPoint, size: CGSize) {
         let x = bottomLeft.x
         let y = bottomLeft.y - size.height
         let origin = CGPoint(x: x, y: y)
@@ -129,12 +129,12 @@ public extension CGRect {
     }
 
     /// creates a CGRect with the specified bottomRight point and size components
-    public init(bottomRight: CGPoint, width: CGFloat, height: CGFloat) {
+    init(bottomRight: CGPoint, width: CGFloat, height: CGFloat) {
         self.init(bottomRight: bottomRight, size: CGSize(width: width, height: height))
     }
 
     /// creates a CGRect with the specified bottomRight point and size
-    public init(bottomRight: CGPoint, size: CGSize) {
+    init(bottomRight: CGPoint, size: CGSize) {
         let x = bottomRight.x - size.width
         let y = bottomRight.y - size.height
         let origin = CGPoint(x: x, y: y)
@@ -148,12 +148,12 @@ public extension CGRect {
 //    }
 
     /// creates a CGRect with the specified size
-    public init(size: CGSize) {
+    init(size: CGSize) {
         self.init(origin: CGPoint.zero, size: size)
     }
 
     /// creates a CGRect with the specified size components
-    public init(width: CGFloat, height: CGFloat) {
+    init(width: CGFloat, height: CGFloat) {
         self.init(size: CGSize(width: width, height: height))
     }
 }
@@ -428,7 +428,7 @@ extension CGRect {
 public extension CGRect {
     
     /// converts this `CGRect` instance to a `NSValue` instance.
-    public var asValue: NSValue {
+    var asValue: NSValue {
         return NSValue(cgRect: self)
     }
 }
@@ -436,20 +436,20 @@ public extension CGRect {
 public extension CGRect {
     
     /// creates a CGRect which is scaled by the given factor.
-    public func scaled(_ scale: CGFloat) -> CGRect {
+    func scaled(_ scale: CGFloat) -> CGRect {
         var rect = self
         rect.scale(scale)
         return rect
     }
 
     /// scales the receiver with the given factor.
-    public mutating func scale(_ scale: CGFloat) {
+    mutating func scale(_ scale: CGFloat) {
         self.size.scale(scale)
     }
 
     /// Makes the receiver smaller by the
     /// given factor.
-    public mutating func inset(_ scale: CGFloat) {
+    mutating func inset(_ scale: CGFloat) {
         assert(scale > 0, "use .outset() instead")
         let dx = self.size.width * scale
         let dy = self.size.height * scale
@@ -458,7 +458,7 @@ public extension CGRect {
 
     /// Makes the receiver larger by the
     /// given factor.
-    public mutating func outset(_ scale: CGFloat) {
+    mutating func outset(_ scale: CGFloat) {
         assert(scale < 0, "use .inset() instead")
         let dx = self.size.width * scale
         let dy = self.size.height * scale
@@ -468,7 +468,7 @@ public extension CGRect {
 
     /// Returns a rectangle that is smaller than the source rectangle by the
     /// given factor, with the same center point.
-    public func inseted(_ scale: CGFloat) -> CGRect {
+    func inseted(_ scale: CGFloat) -> CGRect {
         var rect = self
         rect.inset(scale)
         return rect
@@ -476,7 +476,7 @@ public extension CGRect {
 
     /// Returns a rectangle that is larger than the source rectangle by the
     /// given factor, with the same center point.
-    public func outseted(_ scale : CGFloat) -> CGRect {
+    func outseted(_ scale : CGFloat) -> CGRect {
         var rect = self
         rect.outset(scale)
         return rect
@@ -486,42 +486,42 @@ public extension CGRect {
 public extension CGRect {
     
     /// creates a CGRect with the given `size`. the rest of properties are the same as the receiver
-    public func with(size: CGSize) -> CGRect {
+    func with(size: CGSize) -> CGRect {
         var frame = self
         frame.size = size
         return frame
     }
 
     /// creates a CGRect with the given `origin`. the rest of properties are the same as the receiver
-    public func with(origin: CGPoint) -> CGRect {
+    func with(origin: CGPoint) -> CGRect {
         var frame = self
         frame.origin = origin
         return frame
     }
 
     /// creates a CGRect with the given `width`. the rest of properties are the same as the receiver
-    public func with(width: CGFloat) -> CGRect {
+    func with(width: CGFloat) -> CGRect {
         var frame = self
         frame.size.width = width
         return frame
     }
 
     /// creates a CGRect with the given `height`. the rest of properties are the same as the receiver
-    public func with(height: CGFloat) -> CGRect {
+    func with(height: CGFloat) -> CGRect {
         var frame = self
         frame.size.height = height
         return frame
     }
 
     /// creates a CGRect with the given `x`. the rest of properties are the same as the receiver
-    public func with(x: CGFloat) -> CGRect {
+    func with(x: CGFloat) -> CGRect {
         var frame = self
         frame.origin.x = x
         return frame
     }
 
     /// creates a CGRect with the given `y`. the rest of properties are the same as the receiver
-    public func with(y: CGFloat) -> CGRect {
+    func with(y: CGFloat) -> CGRect {
         var frame = self
         frame.origin.y = y
         return frame
@@ -531,7 +531,7 @@ public extension CGRect {
 public extension CGRect {
 
     /// apply a transformation to a CGPoint
-    public mutating func apply(_ t: CGAffineTransform) {
+    mutating func apply(_ t: CGAffineTransform) {
         self = self.applying(t)
     }
 }

@@ -15,7 +15,7 @@ public extension BidirectionalCollection {
     /// position equal to the last valid subscript argument.
     ///
     /// If the set is empty, `endIndex` is equal to `startIndex`.
-    public var lastIndex: Index {
+    var lastIndex: Index {
         return self.index(self.endIndex, offsetBy: -1)
     }
 }

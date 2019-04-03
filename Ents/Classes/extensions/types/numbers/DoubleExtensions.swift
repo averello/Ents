@@ -14,7 +14,7 @@ import QuartzCore
 public extension Double {
     
     /// converts a `Double` instance to a `CGFloat` instance.
-    public var asCGFloat: QuartzCore.CGFloat {
+    var asCGFloat: QuartzCore.CGFloat {
         return QuartzCore.CGFloat(self)
     }
 }

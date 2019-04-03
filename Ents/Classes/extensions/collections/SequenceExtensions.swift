@@ -20,7 +20,7 @@ public extension Sequence {
     ///
     /// - Parameter pridecate: A predicate
     /// - returns: last element satisfying the predicate if any
-    public func last(where predicate: (Iterator.Element) -> Bool) -> Iterator.Element? {
+    func last(where predicate: (Iterator.Element) -> Bool) -> Iterator.Element? {
         for element in self.reversed() where predicate(element) {
             return element
         }
@@ -32,13 +32,13 @@ public extension Sequence {
     
     /// - Parameter pridecate: a predicate
     /// - returns: true if all elements satisfy the predicate
-    public func all(matching predicate: (Iterator.Element) -> Bool) -> Bool {
+    func all(matching predicate: (Iterator.Element) -> Bool) -> Bool {
         return !self.contains { !predicate($0) }
     }
     
     /// - Parameter pridecate: a predicate
     /// - returns: true if none of the elements satisfy the predicate
-    public func none(matching predicate: (Iterator.Element) -> Bool) -> Bool {
+    func none(matching predicate: (Iterator.Element) -> Bool) -> Bool {
         return self.all { !predicate($0) }
     }
 }
@@ -46,7 +46,7 @@ public extension Sequence {
 public extension Sequence where Iterator.Element: Hashable {
     
     /// - returns: an array containing once all elemnts, in order they appear in the sequence
-    public func unique() -> [Iterator.Element] {
+    func unique() -> [Iterator.Element] {
         var seen: Set<Iterator.Element> = []
         return self.filter { element in
             if seen.contains(element) {
@@ -60,7 +60,7 @@ public extension Sequence where Iterator.Element: Hashable {
 
 public extension Sequence {
     
-    public func forEachPerform(_ block: (Iterator.Element) throws -> () throws -> Void) rethrows {
+    func forEachPerform(_ block: (Iterator.Element) throws -> () throws -> Void) rethrows {
         try self.forEach { (element: Iterator.Element) -> Void in
             // call 'closure' to get an instance method
             // then run it

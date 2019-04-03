@@ -14,7 +14,7 @@ public extension BinaryFloatingPoint
     where Self.RawSignificand == Double.RawSignificand, Self.RawExponent == Double.RawExponent {
     
     /// converts this `Double`-like instance to a `NSNumber` instance.
-    public var asNumber: NSNumber {
+    var asNumber: NSNumber {
         return NSNumber(value: Double(sign: self.sign,
                                       exponentBitPattern: self.exponentBitPattern,
                                       significandBitPattern: self.significandBitPattern))
@@ -22,7 +22,7 @@ public extension BinaryFloatingPoint
     
     /// Returns a floating-point value that is raised to the power of `p`.
     /// - parameter p: a floating-point power.
-    public func power(_ p: Self) -> Self {
+    func power(_ p: Self) -> Self {
         let lhs = Double(sign: self.sign,
                         exponentBitPattern: self.exponentBitPattern,
                         significandBitPattern: self.significandBitPattern)
@@ -37,7 +37,7 @@ public extension BinaryFloatingPoint
     
     /// Returns a floating-point value that is raised to the power of `p`.
     /// - parameter p: an integer power.
-    public func power<I>(_ p: I) -> Self where I: BinaryInteger {
+    func power<I>(_ p: I) -> Self where I: BinaryInteger {
         let lhs = Double(sign: self.sign,
                         exponentBitPattern: self.exponentBitPattern,
                         significandBitPattern: self.significandBitPattern)
@@ -57,12 +57,12 @@ public extension BinaryFloatingPoint
     }
     
     /// returns the square value of this instance.
-    public var square: Self {
+    var square: Self {
         return self.power(2)
     }
     
     /// returns the cube value of this instance.
-    public var cube: Self {
+    var cube: Self {
         return self.power(3)
     }
 }
@@ -72,7 +72,7 @@ public extension BinaryFloatingPoint
     where Self.RawSignificand == Float.RawSignificand, Self.RawExponent == Float.RawExponent {
     
     /// converts this `Float`-like instance to a `NSNumber` instance.
-    public var asNumber: NSNumber {
+    var asNumber: NSNumber {
         return NSNumber(value: Float(sign: self.sign,
                                      exponentBitPattern: self.exponentBitPattern,
                                      significandBitPattern: self.significandBitPattern))
@@ -80,7 +80,7 @@ public extension BinaryFloatingPoint
     
     /// Returns a floating-point value that is raised to the power of `p`.
     /// - parameter p: a floating-point power.
-    public func power(_ p: Self) -> Self {
+    func power(_ p: Self) -> Self {
         let lhs = Float(sign: self.sign,
                         exponentBitPattern: self.exponentBitPattern,
                         significandBitPattern: self.significandBitPattern)
@@ -95,7 +95,7 @@ public extension BinaryFloatingPoint
     
     /// Returns a floating-point value that is raised to the power of `p`.
     /// - parameter p: an integer power.
-    public func power<I>(_ p: I) -> Self where I: BinaryInteger {
+    func power<I>(_ p: I) -> Self where I: BinaryInteger {
         let lhs = Float(sign: self.sign,
                         exponentBitPattern: self.exponentBitPattern,
                         significandBitPattern: self.significandBitPattern)
@@ -115,12 +115,12 @@ public extension BinaryFloatingPoint
     }
 
     /// returns the square value of this instance.
-    public var square: Self {
+    var square: Self {
         return self.power(2)
     }
     
     /// returns the cube value of this instance.
-    public var cube: Self {
+    var cube: Self {
         return self.power(3)
     }
 }

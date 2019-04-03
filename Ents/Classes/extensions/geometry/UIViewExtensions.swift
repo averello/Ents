@@ -15,7 +15,7 @@ import CoreGraphics
 public extension UIView {
     
     /// the view layer's anchor point.
-    final public var layerAnchorPoint: CGPoint {
+    final var layerAnchorPoint: CGPoint {
         get {
             return self.layer.anchorPoint
         }
@@ -29,7 +29,7 @@ public extension UIView {
     
     /// scales the receiver's frame with the provided scale.
     /// - parameter scale: a factor.
-    final public func scale(_ scale: CGFloat) {
+    final func scale(_ scale: CGFloat) {
         self.frameSize.scale(scale)
     }
 }
@@ -39,7 +39,7 @@ public extension UIView {
     /// sets the center of the view using a specific anchor point.
     /// - parameter point: the anchor point to use.
     /// - parameter block: a closure that returns the new center of the receiver.
-    final public func center<V>(withAnchorPoint point: CGPoint, _ block: (V) -> CGPoint) where V: UIView {
+    final func center<V>(withAnchorPoint point: CGPoint, _ block: (V) -> CGPoint) where V: UIView {
         let anchorPoint = self.layer.anchorPoint
         self.layerAnchorPoint = point
         self.center = block(self as! V)
@@ -49,7 +49,7 @@ public extension UIView {
     /// Evaluates the given closure with no transform applied to the receiver,
     /// passing the receiver as its argument.
     /// - parameter block: a closure to evaluate without transformations.
-    final public func withoutTransform<V>(_ block: (V) -> Void) where V: UIView {
+    final func withoutTransform<V>(_ block: (V) -> Void) where V: UIView {
         let transform = self.transform
         self.transform = CGAffineTransform.identity
         block(self as! V)

@@ -107,7 +107,7 @@ public final class Alarm: CustomDebugStringConvertible {
 // Swift 3
 fileprivate extension DispatchQueue {
     
-    fileprivate class var _currentLabel: String {
+    class var _currentLabel: String {
         return String(validatingUTF8: __dispatch_queue_get_label(nil))!
     }
 }

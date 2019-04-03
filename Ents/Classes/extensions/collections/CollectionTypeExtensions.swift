@@ -40,17 +40,17 @@ public extension Collection {
     ///
     /// - Parameter body: A closure that takes an element of the sequence, as 
     ///     well as its index in the collection, as its parameters.
-    public func forEach(inReverse rev: Bool = false,
-                        body: ((Self.Index, Self.Iterator.Element)) throws -> Void) rethrows {
+    func forEach(inReverse rev: Bool = false,
+                 body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
         try self.forEach(inRange: self.wholeRange, inReverse: rev, body: body)
     }
-
+    
     /// Trasverses a `Collection` instance from end to start, evaluating the 
     /// given closure for each element.
-    public func forEachReversed(body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
+    func forEachReversed(body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
         try self.forEach(inRange: self.wholeRange, inReverse: true, body: body)
     }
-
+    
     /// Calls the given closure on each element starting from a given index in
     /// the sequence in the same order as a `for`-`in` loop with the index of
     /// the elemement in the collection.
@@ -65,11 +65,11 @@ public extension Collection {
     /// - Parameter startingFromIndex: the index to start iterating from
     /// - Parameter body: A closure that takes an element of the sequence, as
     ///     well as its index in the collection, as its parameters.
-    public func forEach(startingFromIndex index: Self.Index,
-                        body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
+    func forEach(startingFromIndex index: Self.Index,
+                 body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
         try self.forEach(inRange: index..<self.endIndex, body: body)
     }
-
+    
     /// Calls the given closure on each element up to a given index in
     /// the sequence in the same order as a `for`-`in` loop with the index of
     /// the elemement in the collection.
@@ -84,14 +84,14 @@ public extension Collection {
     /// - Parameter upToIndex: the index to end iterating
     /// - Parameter body: A closure that takes an element of the sequence, as
     ///     well as its index in the collection, as its parameters.
-    public func forEach(upToIndex index: Self.Index,
-                        body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
+    func forEach(upToIndex index: Self.Index,
+                 body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
         try self.forEach(inRange: self.startIndex..<index, body: body)
     }
-
-    public func forEach(inRange range: Range<Self.Index>,
-                        inReverse rev: Bool = false,
-                        body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
+    
+    func forEach(inRange range: Range<Self.Index>,
+                 inReverse rev: Bool = false,
+                 body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
         guard not(range.isEmpty) else { return }
         guard (range.lowerBound >= self.startIndex && range.lowerBound < self.endIndex) &&
             (range.upperBound >= self.startIndex && range.upperBound <= self.endIndex)
@@ -100,16 +100,16 @@ public extension Collection {
             try self._forEachIterateLoop(with: range, body: body)
         }
         else {
-			try self._forEachIterateLoopInReverse(with: range, body: body)
+            try self._forEachIterateLoopInReverse(with: range, body: body)
         }
     }
-
-	private func _forEachIterateLoop(with range: Range<Self.Index>,
-	                                 body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
+    
+    private func _forEachIterateLoop(with range: Range<Self.Index>,
+                                     body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
         try self.__forEachIterateLoop(with: range) { (i, e, b) in
             try body(i, e)
         }
-	}
+    }
     
     private func __forEachIterateLoop(with range: Range<Self.Index>,
                                       body: (Self.Index, Self.Iterator.Element, _ stop: inout Bool) throws -> Void) rethrows {
@@ -121,13 +121,13 @@ public extension Collection {
             currentIndex = self.index(after: currentIndex)
         }
     }
-
-	private func _forEachIterateLoopInReverse(with range: Range<Self.Index>,
-	                                          body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
-		try self.__forEachIterateLoopInReverse(with: range) { (i, e, b) in
+    
+    private func _forEachIterateLoopInReverse(with range: Range<Self.Index>,
+                                              body: (Self.Index, Self.Iterator.Element) throws -> Void) rethrows {
+        try self.__forEachIterateLoopInReverse(with: range) { (i, e, b) in
             try body(i,e)
         }
-	}
+    }
     
     private func __forEachIterateLoopInReverse(with range: Range<Self.Index>,
                                                body: (Self.Index, Self.Iterator.Element, _ stop: inout Bool) throws -> Void) rethrows {
@@ -144,7 +144,7 @@ public extension Collection {
     /// the given closure, passing the index of the element as well as a `stop`
     /// indicator to stop prematurely the iteration.
     /// Tris to replicate `-enumerateObjectsUsingBlock:` of `NSArray`.
-    public func enumerate(_ body: (Self.Index, Self.Iterator.Element, _ stop: inout Bool) throws -> Void) rethrows {
+    func enumerate(_ body: (Self.Index, Self.Iterator.Element, _ stop: inout Bool) throws -> Void) rethrows {
         try self.__forEachIterateLoop(with: self.wholeRange,
                                       body: body)
     }
@@ -154,14 +154,14 @@ public extension Collection {
     
     /// A range that contains all valid indexes of the collection.
     /// This range does not contain "pass the end" indexes.
-    public var wholeRange: Range<Self.Index> {
+    var wholeRange: Range<Self.Index> {
         return self.startIndex..<self.endIndex
     }
     
     
     /// A closed range that contains all valid indexes of the collection.
     /// This range does not contain "pass the end" indexes.
-    public var closedWholeRange: ClosedRange<Self.Index> {
+    var closedWholeRange: ClosedRange<Self.Index> {
         let whole = self.wholeRange
         let upper = self.index(whole.upperBound, offsetBy: -1)
         return ClosedRange(uncheckedBounds: (whole.lowerBound, upper: upper))
@@ -172,7 +172,7 @@ public extension Collection where Index: Strideable, Index.Stride: SignedInteger
     
     /// A range that contains all valid indexes of the collection.
     /// This range does not contain "pass the end" indexes.
-    public var wholeRange: Range<Self.Index> {
+    var wholeRange: Range<Self.Index> {
         return Range(self.closedWholeRange)
     }
 }
@@ -182,7 +182,7 @@ public extension Collection {
     /// Find indices satisfying the given predicate.
     /// - parameter predicate: a predicate
     /// - returns: the indices of elements satisfying predicate
-    public func indices(where predicate: (Iterator.Element) -> Bool) -> [Index] {
+    func indices(where predicate: (Iterator.Element) -> Bool) -> [Index] {
         var indices: [Index] = Array<Index>()
         indices.reserveCapacity(Int(self.count))
         
@@ -200,7 +200,7 @@ public extension Collection {
 }
 
 public extension Collection {
-
+    
     /// Returns a tuple with two arrays, one with elements of `self` that satisfy
     /// `includeElement` and another with the elements of `self` that DO NO
     /// satisfy the `includeElement` predicate.
@@ -210,14 +210,14 @@ public extension Collection {
     ///   traversal step invokes `predicate` on one or more underlying
     ///   elements.
     /// - parameter includeElement: a predicate
-    public func filterWithRemainder(includeElement: (Self.Iterator.Element) throws -> Bool) rethrows -> (included:[Self.Iterator.Element], notIncluded:[Self.Iterator.Element]) {
+    func filterWithRemainder(includeElement: (Self.Iterator.Element) throws -> Bool) rethrows -> (included:[Self.Iterator.Element], notIncluded:[Self.Iterator.Element]) {
         var filtered: [Self.Iterator.Element] = []
         var unfiltered: [Self.Iterator.Element] = []
         
         let capacity = Int(self.count/2)
         filtered.reserveCapacity(capacity)
         unfiltered.reserveCapacity(capacity)
-
+        
         for element in self {
             if try includeElement(element) {
                 filtered.append(element)
@@ -228,7 +228,7 @@ public extension Collection {
         }
         return (filtered,unfiltered)
     }
-
+    
     /// Returns an array **NOT** containing, in order, the elements of the 
     /// sequence that satisfy the given predicate.
     /// This is a **reverted** filter().
@@ -242,7 +242,7 @@ public extension Collection {
     /// sequence as its argument and returns a Boolean value indicating whether 
     /// the element should be excluded in the returned array.
     /// - Returns: An array of the elements that `excluding` excluded.
-    public func sieve(_ excluding: (Self.Iterator.Element) throws -> Bool) rethrows -> [Self.Iterator.Element] {
+    func sieve(_ excluding: (Self.Iterator.Element) throws -> Bool) rethrows -> [Self.Iterator.Element] {
         return try self.filter { try not(excluding($0)) }
     }
 }
@@ -265,7 +265,7 @@ public extension Collection {
     ///   value indicating whether the element should be included in the 
     ///   returned array.
     /// - Returns: An array of the elements that `includeElement` allowed.
-    public func filteri(_ isIncluded: (Self.Index, Self.Iterator.Element) throws -> Bool) rethrows -> [Self.Iterator.Element] {
+    func filteri(_ isIncluded: (Self.Index, Self.Iterator.Element) throws -> Bool) rethrows -> [Self.Iterator.Element] {
         var result: [Iterator.Element] = []
         let count = Int(self.count)
         result.reserveCapacity(count)
@@ -294,7 +294,7 @@ public extension Collection {
     ///   returns a transformed value of the same or of a different type.
     /// - Returns: An array containing the transformed elements of this
     ///   sequence.
-    public func mapi<T>(_ transform: (Self.Index, Self.Iterator.Element) throws -> T) rethrows -> [T] {
+    func mapi<T>(_ transform: (Self.Index, Self.Iterator.Element) throws -> T) rethrows -> [T] {
         var result: [T] = []
         let count = Int(self.count)
         result.reserveCapacity(count)
@@ -304,8 +304,8 @@ public extension Collection {
         }
         return result
     }
-
-    public func flatMapi<SegmentOfResult : Sequence>(_ transform: (Self.Index, Self.Iterator.Element) throws -> SegmentOfResult) rethrows -> [SegmentOfResult.Iterator.Element] {
+    
+    func flatMapi<SegmentOfResult : Sequence>(_ transform: (Self.Index, Self.Iterator.Element) throws -> SegmentOfResult) rethrows -> [SegmentOfResult.Iterator.Element] {
         var result: [SegmentOfResult.Iterator.Element] = []
         let count = Int(self.count)
         result.reserveCapacity(count) // at least
@@ -315,7 +315,7 @@ public extension Collection {
         }
         return result
     }
-
+    
     /// Returns the result of combining the elements of the sequence using the
     /// given closure.
     ///
@@ -357,7 +357,7 @@ public extension Collection {
     ///     closure or returned to the caller.
     /// - Returns: The final accumulated value. If the sequence has no elements,
     ///   the result is `initialResult`.
-    public func reducei<Result>(_ initialResult: Result, _ nextPartialResult: (Result, Self.Index, Self.Iterator.Element) throws -> Result) rethrows -> Result {
+    func reducei<Result>(_ initialResult: Result, _ nextPartialResult: (Result, Self.Index, Self.Iterator.Element) throws -> Result) rethrows -> Result {
         var result = initialResult
         try self.forEach { i,e in
             result = try nextPartialResult(result, i, e)
@@ -373,7 +373,7 @@ public extension Collection {
     /// position equal to the last valid subscript argument.
     ///
     /// If the set is empty, `endIndex` is equal to `startIndex`.
-    public var lastIndex: Index {
+    var lastIndex: Index {
         guard self.hasElements else { return self.startIndex }
         let start = self.startIndex
         var index = start
@@ -385,7 +385,7 @@ public extension Collection {
 }
 
 public extension Collection {
-
+    
     /// A `Boolean` value indicating whether the collection is *NOT* empty.
     ///
     /// When you need to check whether your collection is not empty, use the
@@ -403,14 +403,14 @@ public extension Collection {
     ///     // Prints "Hi ho, Silver!")
     ///
     /// - Complexity: O(1)
-    public var hasElements: Bool {
+    var hasElements: Bool {
         return (self.isEmpty == false)
     }
 }
 
 public extension Collection where Self.Index: BinaryInteger & Comparable {
-
-
+    
+    
     /// Returns an array containing the results of mapping the given closure
     /// over this sequence. The maping happens concurrently in a concurrent
     /// queue.
@@ -419,9 +419,9 @@ public extension Collection where Self.Index: BinaryInteger & Comparable {
     /// of this sequence as its parameter and returns a transformed value of the
     /// same or of a different type. As the closure will be executed concurrently
     /// in it must therefore be re-entrant safe.
-    public func concurrentMap<B>(qos: DispatchQoS.QoSClass = DispatchQoS.QoSClass.default,
-                                 lock: ConcurrentLock = ConcurrentLock.spinLock,
-                                 _ transform: @escaping (Self.Element) -> B) -> [B] {
+    func concurrentMap<B>(qos: DispatchQoS.QoSClass = DispatchQoS.QoSClass.default,
+                          lock: ConcurrentLock = ConcurrentLock.spinLock,
+                          _ transform: @escaping (Self.Element) -> B) -> [B] {
         let count = self.count
         let result = ConcurrentValue(lock,
                                      value: Array<B?>(repeating: nil, count: count))
@@ -436,7 +436,7 @@ public extension Collection where Self.Index: BinaryInteger & Comparable {
         }
         return result.value.map { $0! }
     }
-
+    
     /// Returns the concatenated results of mapping the given transformation
     /// over this sequence. The maping happens concurrently in a concurrent
     /// queue.
@@ -444,9 +444,9 @@ public extension Collection where Self.Index: BinaryInteger & Comparable {
     /// - parameter transform: A closure that accepts an element of this
     /// sequence as its argument and returns an optional value. As the closure
     /// will be executed concurrently in it must therefore be re-entrant safe.
-    public func concurrentFlatMap<SegmentOfResult>(qos: DispatchQoS.QoSClass = DispatchQoS.QoSClass.default,
-                                                   lock: ConcurrentLock = ConcurrentLock.spinLock,
-                                                   _ transform: @escaping (Element) -> SegmentOfResult) -> [SegmentOfResult.Element] where SegmentOfResult: Sequence {
+    func concurrentFlatMap<SegmentOfResult>(qos: DispatchQoS.QoSClass = DispatchQoS.QoSClass.default,
+                                            lock: ConcurrentLock = ConcurrentLock.spinLock,
+                                            _ transform: @escaping (Element) -> SegmentOfResult) -> [SegmentOfResult.Element] where SegmentOfResult: Sequence {
         let count = self.count
         let result = ConcurrentValue(lock,
                                      value: Array<SegmentOfResult?>(repeating: nil, count: count))
@@ -460,9 +460,9 @@ public extension Collection where Self.Index: BinaryInteger & Comparable {
             }
         }
         return result.value.flatMap { $0! }
-
+        
     }
-
+    
     /// Returns an array containing the non-nil results of calling the given
     /// transformation with each element of this sequence. The maping happens
     /// concurrently in a concurrent queue.
@@ -470,9 +470,9 @@ public extension Collection where Self.Index: BinaryInteger & Comparable {
     /// - parameter transform: A closure that accepts an element of this
     /// sequence as its argument and returns an optional value. As the closure
     /// will be executed concurrently in it must therefore be re-entrant safe.
-    public func concurrentCompactMap<ElementOfResult>(qos: DispatchQoS.QoSClass = DispatchQoS.QoSClass.default,
-                                                      lock: ConcurrentLock = ConcurrentLock.spinLock,
-                                                      _ transform: @escaping (Element) -> ElementOfResult?) -> [ElementOfResult] {
+    func concurrentCompactMap<ElementOfResult>(qos: DispatchQoS.QoSClass = DispatchQoS.QoSClass.default,
+                                               lock: ConcurrentLock = ConcurrentLock.spinLock,
+                                               _ transform: @escaping (Element) -> ElementOfResult?) -> [ElementOfResult] {
         let count = self.count
         let result = ConcurrentValue(lock,
                                      value: Array<ElementOfResult?>(repeating: nil, count: count))
@@ -490,7 +490,7 @@ public extension Collection where Self.Index: BinaryInteger & Comparable {
 }
 
 public extension Collection where Self.Index: BinaryInteger & Comparable {
-
+    
     /// Returns an array containing, in order, the elements of the sequence
     /// that satisfy the given predicate.  The filtering happens
     /// concurrently in a concurrent queue.
