@@ -3,6 +3,7 @@
 //  Ents
 //
 //  Created by Georges Boumis on 13/04/2018.
+//  Copyright © 2016-2019 Georges Boumis.
 //  Licensed under MIT (https://github.com/averello/Ents/blob/master/LICENSE)
 //
 
