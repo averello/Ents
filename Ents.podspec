@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Ents'
-  s.version          = '3.3'
+  s.version          = '3.3.1'
   s.summary          = 'A collection of handy extensions for Swift.'
 
 # This description is used to generate tags and improve search results.
@@ -18,15 +18,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+A collection of handy extensions for Swift.
                        DESC
 
   s.homepage         = 'https://github.com/averello/Ents'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Georges Boumis' => 'developer.george.boumis@gmail.com' }
   s.source           = { :git => 'https://github.com/averello/Ents.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
@@ -35,7 +33,7 @@ TODO: Add long description of the pod here.
   s.xcconfig = { 
 	  "OTHER_SWIFT_FLAGS[config=Debug]" => '-DDEBUG',
 	  "SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]" => 'DEBUG',
-	  "SWIFT_VERSION" => '4.2'
+	  "SWIFT_VERSION" => '5.0'
   }
   
   # s.resource_bundles = {
@@ -43,6 +41,6 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'QuartzCore', 'CoreGraphics', 'CoreFoundation'
+  s.frameworks = 'UIKit', 'QuartzCore', 'CoreGraphics', 'CoreFoundation', 'Foundation', 'CommonCrypto'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

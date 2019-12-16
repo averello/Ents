@@ -22,9 +22,10 @@ public extension Data {
         return self.withUnsafeBytes { (pointer: UnsafeRawBufferPointer) -> Data? in
             guard let base = pointer.baseAddress else { return nil }
             let length = CC_MD5_DIGEST_LENGTH
-            var result = [UInt8](repeating: 0, count: Int(length))
-            CC_MD5(base, CC_LONG(length), &result)
-            return Data(result)
+            let count = Int(length)
+            var digest = [UInt8](repeating: 0, count: count)
+            CC_MD5(base, CC_LONG(pointer.count), &digest)
+            return Data(bytes: digest, count: count)
         }
     }
     
