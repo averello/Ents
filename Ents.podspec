@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Ents'
-  s.version          = '3.3.1'
+  s.version          = '3.3.2'
   s.summary          = 'A collection of handy extensions for Swift.'
 
 # This description is used to generate tags and improve search results.
@@ -41,6 +41,6 @@ A collection of handy extensions for Swift.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'QuartzCore', 'CoreGraphics', 'CoreFoundation', 'Foundation', 'CommonCrypto'
+  s.frameworks = 'UIKit', 'QuartzCore', 'CoreGraphics', 'CoreFoundation', 'Foundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
